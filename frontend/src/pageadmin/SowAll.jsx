@@ -2,6 +2,7 @@ import React, { useEffect, useState } from "react";
 import Siderbar from "./Siderbar";
 import { Link } from "react-router-dom";
 import Config from "../Config";
+import Pagination from "../components/Pagination";
 
 const SowAll = () => {
     const [sow, setSow] = useState([]); // Inicializa como array vacío
@@ -111,17 +112,13 @@ const SowAll = () => {
                                     </tbody>
                                 </table>
                             </div>
-                            <div className="pagination">
-                                {Array.from({ length: totalPages }, (_, index) => (
-                                    <button
-                                        key={index + 1}
-                                        onClick={() => handlePageChange(index + 1)}
-                                        className={`btn ${currentPage === index + 1 ? 'btn-primary' : 'btn-secondary'}`}
-                                    >
-                                        {index + 1}
-                                    </button>
-                                ))}
-                            </div>
+                            <div>
+            <Pagination
+                totalPages={totalPages}
+                currentPage={currentPage}
+                handlePageChange={handlePageChange}
+            />
+        </div>
                         </div>
                     </div>
                 </div>
