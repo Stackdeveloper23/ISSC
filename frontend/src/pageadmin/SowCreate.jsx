@@ -2,61 +2,33 @@ import React, { useState } from "react";
 import { Link, useNavigate } from "react-router-dom";
 import Siderbar from "./Siderbar"; // Asegúrate de importar correctamente tu componente Sidebar
 import Config from "../Config";
+import Enum from "../components/Enum"; // Asegúrate de importar correctamente tu componente Enum
 
 const SowCreate = () => {
     const fields = [
         { label: "Sow Ticket", name: "ticket_sow", type: "text", col: 4 },
         { label: "CLS", name: "cls", type: "text", col: 8 },
-        {
-            label: "Opportunity Name",
-            name: "opportunity_name",
-            type: "text",
-            col: 6,
-        },
-        {
-            label: "Opportunity ID",
-            name: "opportunity_id",
-            type: "text",
-            col: 6,
-        },
-        { label: "Account Name" , name: "account_name", type: "text", col: 6},
+        { label: "Opportunity Name", name: "opportunity_name", type: "text", col: 6 },
+        { label: "Opportunity ID", name: "opportunity_id", type: "text", col: 6 },
+        { label: "Account Name", name: "account_name", type: "text", col: 6 },
         { label: "Delivery Team", name: "delivery_team", type: "text", col: 6 },
         { label: "Ticket Date", name: "ticket_date", type: "text", col: 6 },
-        {
-            label: "Description",
-            name: "sow_description",
-            type: "textarea",
-            col: 12,
-        },
-        { label: "Priority", name: "priority", type: "text", col: 4 },
+        { label: "Description", name: "sow_description", type: "textarea", col: 12 },
+        { label: "Priority", name: "priority", type: "select", col: 4, field: "priority" },
         { label: "Sow Due Date", name: "sow_due_date", type: "text", col: 4 },
-        {
-            label: "Effort Due Date",
-            name: "effort_due_date",
-            type: "text",
-            col: 4,
-        },
-        { label: "Sow Status", name: "sow_status", type: "text", col: 6 },
-        {
-            label: "Delivery Date",
-            name: "sow_delivery_date",
-            type: "text",
-            col: 6,
-        },
+        { label: "Effort Due Date", name: "effort_due_date", type: "text", col: 4 },
+        { label: "Sow Status", name: "sow_status", type: "select", col: 6, field: "sow_status" },
+        { label: "Delivery Date", name: "sow_delivery_date", type: "text", col: 6 },
         { label: "Effort Owner", name: "effort_owner", type: "text", col: 6 },
         { label: "Project ID", name: "project_id", type: "text", col: 6 },
         { label: "Sow Owner", name: "sow_owner", type: "text", col: 4 },
-        { label: "Effort Status", name: "effort_status", type: "text", col: 4 },
-        {
-            label: "Effort Delivery Date",
-            name: "effort_delivery_date",
-            type: "text",
-            col: 4,
-        },
+        { label: "Effort Status", name: "effort_status", type: "select", col: 4, field: "effort_status" },
+        { label: "Effort Delivery Date", name: "effort_delivery_date", type: "text", col: 4 },
         { label: "Comments", name: "comments", type: "textarea", col: 12 },
         { label: "Sow Link", name: "sow_link", type: "text", col: 6 },
         { label: "Effort Link", name: "effort_link", type: "text", col: 6 },
     ];
+
     const [formData, setFormData] = useState({});
     const [errors, setErrors] = useState({});
     const navigate = useNavigate();
@@ -126,6 +98,15 @@ const SowCreate = () => {
                                                     }
                                                     onChange={handleChange}
                                                 />
+                                            ) : field.type === "select" ? (
+                                                <Enum
+                                                    value={
+                                                        formData[field.name] ||
+                                                        ""
+                                                    }
+                                                    onChange={handleChange}
+                                                    field={field.field}
+                                                />
                                             ) : (
                                                 <input
                                                     className="form-control"
@@ -150,7 +131,7 @@ const SowCreate = () => {
                                     type="submit"
                                     className="btn btn-primary d-flex mt-3"
                                 >
-                                    <span class="material-symbols-outlined">
+                                    <span className="material-symbols-outlined">
                                         add_circle
                                     </span>
                                     Create Sow
