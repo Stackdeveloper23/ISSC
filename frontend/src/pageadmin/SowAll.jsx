@@ -1,0 +1,133 @@
+import React, { useEffect, useState } from "react";
+import Siderbar from "./Siderbar";
+import { Link } from "react-router-dom";
+import Config from "../Config";
+
+const SowAll = () => {
+    const [sow, setSow] = useState([]); // Inicializa como array vacío
+    const [loading, setLoading] = useState(true);
+    const [currentPage, setCurrentPage] = useState(1);
+    const [totalPages, setTotalPages] = useState(1);
+
+    useEffect(() => {
+        const fetchSows = async (page) => {
+            try {
+                const response = await Config.getSowAll(page);
+                console.log("API Response:", response); // Verificar la respuesta completa
+
+                // Verifica la estructura de la respuesta
+                if (response && response.data) {
+                    console.log("Data part of response:", response.data);
+
+                    if (Array.isArray(response.data)) {
+                        setSow(response.data); // Los datos de los sows están en response.data
+                        setTotalPages(response.last_page);
+                    } else if (Array.isArray(response.data.data)) {
+                        setSow(response.data.data); // Los datos de los sows están en response.data.data
+                        setTotalPages(response.data.last_page);
+                    } else {
+                        console.error("Data is not an array:", response.data.data);
+                    }
+                } else {
+                    console.error("La respuesta no es válida:", response);
+                }
+            } catch (error) {
+                console.error("Error al obtener datos:", error);
+            } finally {
+                setLoading(false); // Marcar que la carga ha terminado
+            }
+        };
+        fetchSows(currentPage);
+    }, [currentPage]);
+
+    const handlePageChange = (page) => {
+        setCurrentPage(page);
+        setLoading(true); // Volver a poner loading en true al cambiar de página
+    };
+
+    return (
+        <div className="container-fluid">
+            <div className="row">
+                <Siderbar />
+                <div className="col-sm-10 mt-4 mb-3">
+                    <div className="card">
+                        <div className="card-body">
+                            <div className="col-sm-2">
+                                <Link
+                                    to={"/admin/sow/create"}
+                                    className="btn btn-primary d-flex justify-content-center"
+                                >
+                                    <span className="material-symbols-outlined">
+                                        add_circle
+                                    </span>
+                                    New Sow
+                                </Link>
+                            </div>
+                            <div className="table-responsive mt-3">
+                                <table className="table table-hover table-bordered table-striped">
+                                    <thead>
+                                        <tr className="table-secondary">
+                                            <th className="col-sm-2">Sow-Ticket</th>
+                                            <th className="col-sm-4">Description</th>
+                                            <th className="col-sm-2">Project</th>
+                                            <th className="col-sm-1">Team</th>
+                                            <th className="col-sm-2">Date</th>
+                                            <th className="col-sm-2">Status</th>
+                                            <th></th>
+                                        </tr>
+                                    </thead>
+                                    <tbody>
+                                        {loading ? (
+                                            <tr>
+                                                <td colSpan="7">Loading...</td>
+                                            </tr>
+                                        ) : sow.length > 0 ? ( // Asegúrate de que sow no sea undefined
+                                            sow.map((item) => (
+                                                <tr key={item.ticket_sow}>
+                                                    <td>{item.ticket_sow}</td>
+                                                    <td>{item.sow_description}</td>
+                                                    <td>{item.project_id}</td>
+                                                    <td>{item.delivery_team}</td>
+                                                    <td>{item.ticket_date}</td>
+                                                    <td>{item.sow_status}</td>
+                                                    <td>
+                                                        <Link
+                                                            to={`/admin/sow/details/${item.ticket_sow}`}
+                                                            className="btn d-flex justify-content-center w-50"
+                                                        style={{ backgroundColor: "#F9E2AF"}}>
+                                                            <span className="material-symbols-outlined">
+                                                                pageview
+                                                            </span>
+                                                
+                                                        </Link>
+                                                    </td>
+                                                </tr>
+                                            ))
+                                        ) : (
+                                            <tr>
+                                                <td colSpan="7">Sows not found</td>
+                                            </tr>
+                                        )}
+                                    </tbody>
+                                </table>
+                            </div>
+                            <div className="pagination">
+                                {Array.from({ length: totalPages }, (_, index) => (
+                                    <button
+                                        key={index + 1}
+                                        onClick={() => handlePageChange(index + 1)}
+                                        className={`btn ${currentPage === index + 1 ? 'btn-primary' : 'btn-secondary'}`}
+                                    >
+                                        {index + 1}
+                                    </button>
+                                ))}
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    );
+};
+
+export default SowAll;
