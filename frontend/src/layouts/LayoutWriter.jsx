@@ -4,12 +4,12 @@ import Footer from '../components/Footer'
 import { Outlet, useNavigate } from 'react-router-dom'
 import AuthUser from '../pageauth/AuthUser'
 
-const LayoutClient = () => {
+const LayoutWriter = () => {
         const { getRol } = AuthUser()
         const navigate = useNavigate()
     
         useEffect(()=>{
-            if(getRol()!="user"){
+            if(getRol()!="writer"){
                 navigate("/")
             }
         },[])
@@ -22,4 +22,4 @@ const LayoutClient = () => {
         </>
     )
 }
-export default LayoutClient
+export default LayoutWriter

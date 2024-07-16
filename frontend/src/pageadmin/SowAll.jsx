@@ -50,7 +50,7 @@ const SowAll = () => {
         <div className="container-fluid">
             <div className="row">
                 <Siderbar />
-                <div className="col-sm-10 mt-4 mb-3">
+                <div className="col-sm-11 mt-4 mb-3">
                     <div className="card">
                         <div className="card-body">
                             <div className="col-sm-2">

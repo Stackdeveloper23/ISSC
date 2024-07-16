@@ -40,10 +40,10 @@ const AuthUser = () => {
 
         if(getRol()==="admin")
             navigate('/admin')
-        if(getRol()==="user")
-            navigate('/user')
-        if(getRol()==="cls")
-            navigate('/cls')
+        if(getRol()==="writer")
+            navigate('/writer')
+        if(getRol()==="reader")
+            navigate('/reader')
     }
 
    const getLogout = async() =>{

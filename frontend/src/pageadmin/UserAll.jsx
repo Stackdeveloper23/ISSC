@@ -15,9 +15,10 @@ const UserAll = () => {
         try {
             const response = await Config.getUserAllWithRoles();
             console.log(response); // Verifica los datos recibidos en la consola
-            setUsers(response); // Asigna los datos de usuarios al estado
+            setUsers(response || []); // Asigna los datos de usuarios al estado
         } catch (error) {
             console.error("Error al obtener usuarios:", error);
+            setUsers([]); // En caso de error, establece users como un array vacío
         } finally {
             setLoading(false); // Marca la carga como completada, independientemente del resultado
         }
@@ -61,7 +62,7 @@ const UserAll = () => {
                                     <tbody>
                                         {loading ? (
                                             <tr>
-                                                <td colSpan="3">Loading...</td>
+                                                <td colSpan="5">Loading...</td>
                                             </tr>
                                         ) : users.length > 0 ? (
                                             users.map((user) => (
@@ -75,37 +76,35 @@ const UserAll = () => {
                                                     </td>
                                                     <td>
                                                         <div className="d-flex justify-content-center">
-                                                        <Link
-                                                            to={`/admin/user/edit/${user.id}`}
-                                                            className="btn btn-primary d-flex w-30 me-1"
-                                                        >
-                                                            <span className="material-symbols-outlined">
-                                                                edit
-                                                            </span>
-                                                            Editar
-                                                        </Link>
-                                                        <button
-                                                            className="btn btn-danger d-flex w-30"
-                                                            onClick={() =>
-                                                                deleteUserById(
-                                                                    user.id
-                                                                )
-                                                            }
-                                                        ><span className="material-symbols-outlined">
-                                                        delete
-                                                        </span>
-
-                                                            Delete
-                                                        </button>
+                                                            <Link
+                                                                to={`/admin/user/edit/${user.id}`}
+                                                                className="btn btn-primary d-flex w-30 me-1"
+                                                            >
+                                                                <span className="material-symbols-outlined">
+                                                                    edit
+                                                                </span>
+                                                                Editar
+                                                            </Link>
+                                                            <button
+                                                                className="btn btn-danger d-flex w-30"
+                                                                onClick={() =>
+                                                                    deleteUserById(
+                                                                        user.id
+                                                                    )
+                                                                }
+                                                            >
+                                                                <span className="material-symbols-outlined">
+                                                                    delete
+                                                                </span>
+                                                                Delete
+                                                            </button>
                                                         </div>
                                                     </td>
                                                 </tr>
                                             ))
                                         ) : (
                                             <tr>
-                                                <td colSpan="3">
-                                                    No users found
-                                                </td>
+                                                <td colSpan="5">No users found</td>
                                             </tr>
                                         )}
                                     </tbody>
