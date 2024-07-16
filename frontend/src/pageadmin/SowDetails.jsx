@@ -1,11 +1,10 @@
 import React, { useEffect, useState } from "react";
 import { Link, useParams, useNavigate } from "react-router-dom";
-import axios from "axios";
 import Config from "../Config";
 import Enum from "../components/Enum";
 
 const SowDetails = () => {
-    const { id } = useParams(); // Obtiene el ID de los parámetros de la URL
+    const { id } = useParams();
     const navigate = useNavigate();
 
     const [formData, setFormData] = useState({
@@ -35,12 +34,11 @@ const SowDetails = () => {
     useEffect(() => {
         const getSowById = async () => {
             try {
-                const response = await Config.getSowById(id); // Método para obtener datos del API
+                const response = await Config.getSowById(id);
                 const data = response.data;
-                setFormData(data); // Actualiza el estado con los datos obtenidos
+                setFormData(data);
             } catch (error) {
                 console.error("Error fetching SOW:", error);
-                // Manejo de errores, por ejemplo, redirigir a una página de error
                 navigate("/error");
             }
         };
@@ -59,12 +57,11 @@ const SowDetails = () => {
         ev.preventDefault();
         try {
             console.log(formData);
-            await Config.getSowUpdate(formData, id); // Método para enviar datos actualizados al API
+            await Config.getSowUpdate(formData, id);
             console.log("Sow actualizado correctamente");
-            navigate("/admin/sow"); // Redirige después de la actualización exitosa
+            navigate("/admin/sow");
         } catch (error) {
             console.error("Error al actualizar SOW:", error);
-            // Manejo de errores, por ejemplo, mostrar un mensaje al usuario
         }
     };
 
@@ -137,8 +134,8 @@ const SowDetails = () => {
                                             ) : field.type === "select" ? (
                                                 <Enum
                                                     value={formData[field.name] || ''}
-                                                    onChange={(e) => handleChange(e)}
-                                                    field={field.field}
+                                                    onChange={handleChange}
+                                                    field={field.name}
                                                 />
                                             ) : (
                                                 <input
@@ -187,4 +184,3 @@ const SowDetails = () => {
 };
 
 export default SowDetails;
-

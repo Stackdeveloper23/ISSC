@@ -13,7 +13,7 @@ return new class extends Migration
     public function up(): void
     {
         Schema::create('sows', function (Blueprint $table) {
-            $table->integer('ticket_sow')->primary();
+            $table->string('ticket_sow')->primary();
             $table->string("cls",200)->nullable();
             $table->text("opportunity_name")->nullable();
             $table->string("opportunity_id",255)->nullable();
