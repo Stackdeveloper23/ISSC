@@ -1,6 +1,4 @@
-import React from "react";
 import AuthUser from "../pageauth/AuthUser";
-import SearchBar from "./SearchBar";
 import { Link } from "react-router-dom";
 import ButtonTheme from "./ButtonTheme";
 
@@ -24,8 +22,8 @@ const Navbar = () => {
             return (
                 <>
                     <li className="nav-item">
-                        <a className="nav-link" href={`${getRol()}`}>
-                            Admin
+                        <a className="nav-link">
+                        {getRol()}
                         </a>
                     </li>
                     <li className="nav-item">
@@ -67,9 +65,6 @@ const Navbar = () => {
                         style={{ width: "150px", height: "auto" }}
                     />
                 </Link>
-                <div>
-                    <SearchBar />
-                </div>
                 <ButtonTheme />
                 <div className="container d-flex justify-content-center align-items-center">
                     <h3 className="text-light">Implementation Sow System Control</h3>

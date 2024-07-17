@@ -1,25 +1,24 @@
-import React, { useEffect } from 'react'
+import { useEffect } from 'react'
 import Navbar from '../components/Navbar'
-import Footer from '../components/Footer'
-import { Outlet, useNavigate } from 'react-router-dom'
+import { Link, Outlet, useNavigate } from 'react-router-dom'
 import AuthUser from '../pageauth/AuthUser'
 
-const LayoutClient = () => {
+const LayoutReader = () => {
         const { getRol } = AuthUser()
         const navigate = useNavigate()
     
         useEffect(()=>{
-            if(getRol()!="user"){
+            if(getRol()!="reader"){
                 navigate("/")
             }
         },[])
     return (
         <>
-        <Navbar/>
-        <Outlet/>
-        <Footer/>
+      <Navbar/>
+      <Outlet/>
+       
         
         </>
     )
 }
-export default LayoutClient
+export default LayoutReader

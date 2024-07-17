@@ -1,4 +1,4 @@
-import React, { useEffect, useState } from "react";
+import { useEffect, useState } from "react";
 import Siderbar from "./Siderbar";
 import Config from "../Config";
 import { Link, useNavigate, useParams } from "react-router-dom";
@@ -127,11 +127,12 @@ const UserCreate = () => {
                                     />
                                 </div>
                                 <div className="col-sm-12 mt-3">
-                                    <label htmlFor="roles">Roles:</label>
+                                    <label htmlFor="roles">Rol:</label>
 
                                     <select
                                         
                                         className="form-select"
+                                        multiple
                                         value={selectedRoles}
                                         onChange={handleRoleChange}
                                     >

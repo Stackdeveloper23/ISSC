@@ -14,15 +14,22 @@ return new class extends Migration
      */
     public function up(): void
     {
-       $role1 = Role::create(['name' => 'admin']);
-       
-       Role::create(['name' => 'admin', 'guard_name' => 'sanctum']);
-       Role::create(['name' => 'writer', 'guard_name' => 'sanctum']);
-       Role::create(['name' => 'reader', 'guard_name' => 'sanctum']);
-      
+        
+        $role1 = Role::create(['name' => 'admin']);
+       $role2 = Role::create(['name' => 'writer']);
+       $role3 = Role::create(['name' => 'reader']);
+
+       Permission::create(['name' => 'user.module'])->assignRole($role1);
+
+       Permission::create(['name' => 'admin.sow.index'])->syncRoles([$role1, $role2, $role3]);
+       Permission::create(['name' => 'admin.sow.create'])->syncRoles([$role2,$role1]);  
+       Permission::create(['name' => 'admin.sow.edit'])->syncRoles([$role2,$role1]);
+       Permission::create(['name' => 'admin.sow.delete'])->syncRoles([$role2,$role1]);
+
+
        $user = User::find(1);
        $user->assignRole('admin');
-    }
+    }   
 
     /**
      * Reverse the migrations.

@@ -1,4 +1,4 @@
-import React, { useEffect } from 'react'
+import { useEffect } from 'react'
 import Navbar from '../components/Navbar'
 import { Outlet, useNavigate } from 'react-router-dom'
 import AuthUser from '../pageauth/AuthUser'

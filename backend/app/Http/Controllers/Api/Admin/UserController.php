@@ -14,21 +14,34 @@ class UserController extends Controller
 {
     public function index(Request $request) {
         $roleFilter = $request->query('roles');
-
+    
         $query = DB::table('users')
             ->leftJoin('model_has_roles', 'users.id', '=', 'model_has_roles.model_id')
             ->leftJoin('roles', 'model_has_roles.role_id', '=', 'roles.id')
-            ->select('users.id', 'users.name', 'users.email', DB::raw('GROUP_CONCAT(roles.name) as role_names'))
+            ->leftJoin('role_has_permissions', 'roles.id', '=', 'role_has_permissions.role_id')
+            ->leftJoin('permissions', 'role_has_permissions.permission_id', '=', 'permissions.id')
+            ->select('users.id', 'users.name', 'users.email', 
+                     DB::raw('GROUP_CONCAT(DISTINCT roles.name) as role_names'),
+                     DB::raw('GROUP_CONCAT(DISTINCT permissions.name) as permission_names'))
             ->groupBy('users.id', 'users.name', 'users.email');
-
+    
         if ($roleFilter) {
             $query->whereIn('roles.name', explode(',', $roleFilter));
         }
-
-        $users = $query->get();
-
+    
+        $users = $query->get()->map(function ($user) {
+            return [
+                'id' => $user->id,
+                'name' => $user->name,
+                'email' => $user->email,
+                'roles' => explode(',', $user->role_names),
+                'permissions' => explode(',', $user->permission_names),
+            ];
+        });
+    
         return response()->json($users, 200);
     }
+    
 
 
     public function show($id){
@@ -37,9 +50,10 @@ class UserController extends Controller
 
     }
     
+    //CREATE USER
     public function store(Request $request)
     {
-        // Validar los datos de entrada
+        
         $validator = Validator::make($request->all(), [
             'name' => 'required|string|max:255',
             'email' => 'required|string|email|max:255|unique:users',
@@ -54,7 +68,7 @@ class UserController extends Controller
             ], 422);
         }
 
-        // Crear el usuario
+        
         try {
             $user = User::create([
                 'name' => $request->name,
@@ -98,7 +112,6 @@ public function update(Request $request, $id)
         $user->roles()->sync($validatedData['roles']);
     }
 
-    // Retornar la respuesta en formato JSON
     return response()->json($user, 200);
 }
 

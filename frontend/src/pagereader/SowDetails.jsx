@@ -34,7 +34,7 @@ const SowDetails = () => {
     useEffect(() => {
         const getSowById = async () => {
             try {
-                const response = await Config.getSowById(id);
+                const response = await Config.getSowsById(id);
                 const data = response.data;
                 setFormData(data);
             } catch (error) {
@@ -53,27 +53,6 @@ const SowDetails = () => {
         }));
     };
 
-    const submitUpdate = async (ev) => {
-        ev.preventDefault();
-        try {
-            console.log(formData);
-            await Config.getSowsUpdate(formData, id);
-            console.log("Sow actualizado correctamente");
-            navigate("/admin/sow");
-        } catch (error) {
-            console.error("Error al actualizar SOW:", error);
-        }
-    };
-
-    const handleDelete = async () => {
-        try {
-            await Config.getSowDeleteById(id);
-            console.log("Sow eliminado correctamente");
-            navigate("/admin/sow");
-        } catch (error) {
-            console.error("Error al eliminar SOW:", error);
-        }
-    };
 
     const fields = [
         { label: "Sow Ticket", name: "ticket_sow", type: "text", col: 4 },
@@ -105,12 +84,13 @@ const SowDetails = () => {
                 <div className="mt-3 mb-3">
                     <div className="card">
                         <div className="card-body">
-                            <form onSubmit={submitUpdate}>
+                            <form>
                                 <div className="form-group row">
                                     <div className="col-sm-2">
                                         <Link
-                                            to="/admin/sow"
+                                            to="/reader/sow"
                                             className="btn btn-secondary  d-flex align-items-center"
+                                            style={{ width:"100px"}}
                                         >
                                             <span className="material-symbols-outlined me-2">
                                                 arrow_back
@@ -149,31 +129,7 @@ const SowDetails = () => {
                                         </div>
                                     ))}
                                 </div>
-                                <div className="form-group row">
-                                    <div className="mt-3 col-sm-6">
-                                        <button
-                                            type="submit"
-                                            className="btn btn-primary d-flex"
-                                        >
-                                            <span className="material-symbols-outlined">
-                                                upgrade
-                                            </span>
-                                            Update Sow
-                                        </button>
-                                    </div>
-                                    <div className="mt-3 col-sm-6 d-flex justify-content-end">
-                                        <button
-                                            type="button"
-                                            onClick={handleDelete}
-                                            className="btn btn-danger d-flex"
-                                        >
-                                            <span className="material-symbols-outlined">
-                                                delete
-                                            </span>
-                                            Delete
-                                        </button>
-                                    </div>
-                                </div>
+                            
                             </form>
                         </div>
                     </div>

@@ -11,7 +11,7 @@ const InicioUsers = () => {
     <div className="container">
     <div className="row justify-content-center align-items-center" style={viewport}>
         <div className="col-sm-4 ">
-            <div className="card mt-5 mb-5 border-opacity-10">
+            <div className="card mt-5 mb-5 border-opacity-10 rounded-4">
                 <div className="card-body rounded-4 " style={{backgroundColor: "#ff6e4b"}}>
                     <div className="svg-container mt-3 mb-5" id="logo">
                     <img src="https://www.intraway.com/wp-content/uploads/2023/08/intraway-logo.png" alt="logo" />

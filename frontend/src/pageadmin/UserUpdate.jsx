@@ -1,4 +1,4 @@
-import React, { useEffect, useState } from "react";
+import { useEffect, useState } from "react";
 import Siderbar from "./Siderbar";
 import Config from "../Config";
 import { Link, useNavigate, useParams } from "react-router-dom";
@@ -39,6 +39,8 @@ const UserUpdate = () => {
         }
     };
 
+
+
     const handleRoleChange = (e) => {
         const value = Array.from(
             e.target.selectedOptions,
@@ -46,6 +48,7 @@ const UserUpdate = () => {
         );
         setSelectedRoles(value);
     };
+   
 
     const submitUpdate = async (ev) => {
         ev.preventDefault();
@@ -107,23 +110,23 @@ const UserUpdate = () => {
                                     />
                                 </div>
 
-                                <div className="col-sm-12 mt-3">
-                                    <label htmlFor="roles">Roles:</label>
-                                    <select
-                                        className="form-select"
-                                        value={selectedRoles}
-                                        onChange={handleRoleChange}
-                                    >
-                                        {roles.map((role) => (
-                                            <option
-                                                key={role.id}
-                                                value={role.id}
-                                            >
-                                                {role.name}
-                                            </option>
-                                        ))}
-                                    </select>
-                                </div>
+                           
+<div className="col-sm-12 mt-3">
+            <label htmlFor="roles">Rol:</label>
+            <select
+                id="roles"
+                className="form-select"
+                value={selectedRoles}
+                onChange={handleRoleChange}
+            >
+                {roles.map((role) => (
+                    <option key={role.id} value={role.id}>
+                        {role.name}
+                    </option>
+                ))}
+            </select>
+        </div>
+
                                 <div className="btn-group mt-3">
                                     <button
                                         type="submit"

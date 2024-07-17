@@ -1,11 +1,11 @@
 <?php
 
-namespace App\Http\Controllers\Api\client;
+namespace App\Http\Controllers\Api;
 
 use App\Http\Controllers\Controller;
 use Illuminate\Http\Request;
 
-class SowUserController extends Controller
+class DataController extends Controller
 {
     //
 }

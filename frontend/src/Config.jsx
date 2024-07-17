@@ -156,7 +156,73 @@ export default{
             }
           })},
       
-    
+
+          //Reader
+
+          getSowsAll: async (page=1) => {
+            const token = getToken(); // Obtener el token
+            try {
+              const response = await axios.get(`${base_api_url}/reader/sows?page=${page}`, {
+                headers: {
+                  'Authorization': `Bearer ${token}`
+                }
+              });
+              return response.data;
+            } catch (error) {
+              console.error('Error al obtener sows:', error);
+            }
+          },
+
+          getSowsById: (id) => {
+            const token = getToken(); // Obtener el token
+            return axios.get(`${base_api_url}/reader/sow/${id}`, {
+                headers: {
+                    'Authorization': `Bearer ${token}`
+                }
+            })},
+
+
+            //Writer
+
+            getsSowsAll: async (page=1) => {
+              const token = getToken(); // Obtener el token
+              try {
+                const response = await axios.get(`${base_api_url}/writer/sow?page=${page}`, {
+                  headers: {
+                    'Authorization': `Bearer ${token}`
+                  }
+                });
+                return response.data;
+              } catch (error) {
+                console.error('Error al obtener sows:', error);
+              }
+            },
+
+            getsSowsById: (id) => {
+              const token = getToken(); // Obtener el token
+              return axios.get(`${base_api_url}/writer/sow/${id}`, {
+                  headers: {
+                      'Authorization': `Bearer ${token}`
+                  }
+              })},
+
+              getSowsUpdate: (data, id) => {
+                const token = getToken(); 
+                return axios.put(`${base_api_url}/writer/sow/${id}`, data, {
+                    headers: {
+                        'Authorization': `Bearer ${token}`
+                    }
+                })},
+
+                getsSowCreate:(data)=>{
+                  const token = getToken();
+                  return axios.post(`${base_api_url}/writer/sows/create`,data,{
+                  headers: {
+                    'Authorization': `Bearer ${token}`
+                  }
+                 })},
+
+        
 }
 
 
