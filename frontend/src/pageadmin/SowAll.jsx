@@ -1,40 +1,40 @@
 import { useEffect, useState } from "react";
-import Siderbar from "./Siderbar";
 import { Link } from "react-router-dom";
 import Config from "../Config";
+import Siderbar from "./Siderbar";
 import Pagination from "../components/Pagination";
+import DownloadFile from "../components/DownloadFile";
 
 const SowAll = () => {
-    const [sow, setSow] = useState([]); // Inicializa como array vacío
+    const [sow, setSow] = useState([]);
     const [loading, setLoading] = useState(true);
     const [currentPage, setCurrentPage] = useState(1);
     const [totalPages, setTotalPages] = useState(1);
-    const [searchTerm, setSearchTerm] = useState(""); // Estado para el término de búsqueda
-    const [allSows, setAllSows] = useState([]); // Todos los datos
+    const [searchTerm, setSearchTerm] = useState("");
+    const [allSows, setAllSows] = useState([]);
 
     useEffect(() => {
         const fetchSows = async (page) => {
             try {
                 const response = await Config.getSowAll(page);
-                console.log("API Response:", response); // Verificar la respuesta completa
 
                 if (response && response.data) {
                     if (Array.isArray(response.data)) {
-                        setSow(response.data); // Los datos de los sows están en response.data
+                        setSow(response.data);
                         setTotalPages(response.last_page);
                     } else if (Array.isArray(response.data.data)) {
-                        setSow(response.data.data); // Los datos de los sows están en response.data.data
+                        setSow(response.data.data);
                         setTotalPages(response.data.last_page);
                     } else {
                         console.error("Data is not an array:", response.data.data);
                     }
                 } else {
-                    console.error("La respuesta no es válida:", response);
+                    console.error("Invalid response:", response);
                 }
             } catch (error) {
-                console.error("Error al obtener datos:", error);
+                console.error("Error fetching data:", error);
             } finally {
-                setLoading(false); // Marcar que la carga ha terminado
+                setLoading(false);
             }
         };
         fetchSows(currentPage);
@@ -61,7 +61,7 @@ const SowAll = () => {
                             break;
                         }
                     } else {
-                        console.error("La respuesta no es válida:", response);
+                        console.error("Invalid response:", response);
                         break;
                     }
                     page++;
@@ -69,7 +69,7 @@ const SowAll = () => {
 
                 setAllSows(allData);
             } catch (error) {
-                console.error("Error al obtener datos:", error);
+                console.error("Error fetching data:", error);
             }
         };
         fetchAllSows();
@@ -77,7 +77,7 @@ const SowAll = () => {
 
     const handlePageChange = (page) => {
         setCurrentPage(page);
-        setLoading(true); // Volver a poner loading en true al cambiar de página
+        setLoading(true);
     };
 
     const handleSearchChange = (e) => {
@@ -95,7 +95,13 @@ const SowAll = () => {
 
     const dataToDisplay = searchTerm ? filteredSows : sow;
 
-    return (
+
+   
+        
+    
+
+
+          return (
         <div className="container-fluid">
             <div className="row">
                 <Siderbar />
@@ -122,6 +128,9 @@ const SowAll = () => {
                                     value={searchTerm}
                                     onChange={handleSearchChange}
                                 />
+                            </div>
+                            <div className="col-sm-6 d-flex">
+                                <DownloadFile/>
                             </div>
                             </div>
                             <div className="table-responsive mt-3">
@@ -189,4 +198,4 @@ const SowAll = () => {
     );
 };
 
-export default SowAll;
+export default SowAll

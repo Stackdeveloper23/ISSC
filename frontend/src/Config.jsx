@@ -222,6 +222,16 @@ export default{
                   }
                  })},
 
+
+                downloadSow:()=>{
+                  const token = getToken();
+                  return axios.get('http://localhost:8000/api/v1/export/xlsx',{
+                    headers: {
+                      'Authorization': `Bearer ${token}`
+                    },
+                    responseType: 'blob',
+                  })},
+
         
 }
 

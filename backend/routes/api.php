@@ -4,9 +4,9 @@ use App\Http\Controllers\api\Admin\RolController;
 use App\Http\Controllers\Api\Admin\UserController;
 use App\Http\Controllers\Api\AuthController;
 use App\Http\Controllers\Api\Admin\SowController;
+use App\Http\Controllers\Api\ExportController;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Route;
-
 
   Route::prefix('v1')->group(function(){
     // AUTH
@@ -54,7 +54,8 @@ use Illuminate\Support\Facades\Route;
 
         
         Route::get('/enums/{field}', [SowController::class, 'getEnumOptions']);
-        Route::get('/download-data' , 'DataConroller@downloadData');
+        Route::get('/export/xlsx' , [ExportController::class, 'exportXlsx']);
+        Route::get('/export/csv' , [ExportController::class, 'exportCsv']);
       
 
     });
