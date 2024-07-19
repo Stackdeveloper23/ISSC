@@ -32,7 +32,7 @@ const Login = () => {
                     data.user.roles[0].name
                 )
             }else{
-                setMessage(data.message)
+                setMessage(data.message || 'Incorrect username or password')
             }
         })
         })
@@ -53,7 +53,10 @@ const Login = () => {
                     <img src="https://www.intraway.com/wp-content/uploads/2023/08/intraway-logo.png" alt="logo" />
                     </div>
                         <h1 className="text-center fw-bolder mb-5">Login</h1>
-
+                        {message && <div className="text-center text-wrap alert alert-danger"><span className="material-symbols-outlined">
+error
+</span>{message}</div>}
+                      
                           <input type="email" className="form-control mt-3" placeholder="Email:" value={email}
                          onChange={(e)=>setEmail(e.target.value)} required/>
 

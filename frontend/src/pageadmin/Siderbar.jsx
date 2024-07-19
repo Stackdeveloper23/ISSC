@@ -1,12 +1,12 @@
-import React, { useState } from "react";
+//import { useState } from "react";
 import { NavLink } from "react-router-dom";
 
 const Siderbar = () => {
-     const [activeButton, setActiveButton] = useState(null);
+  /*   const [activeButton, setActiveButton] = useState(null);
 
   const handleButtonClick = (button) => {
     setActiveButton(prevActiveButton => (prevActiveButton === button ? null : button));
-  };
+  };*/
 
     return (
         <div className="col-sm-1 pt-3 pb-3">
@@ -30,7 +30,7 @@ const Siderbar = () => {
                             : "btn btn-outline-secondary"
                     }
                 >
-                    <span className="material-symbols-outlined">table_view</span>
+                    <span className="material-symbols-outlined">account_circle</span>
                     User
                 </NavLink>
             </div>

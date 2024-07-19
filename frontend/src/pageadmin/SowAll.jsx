@@ -112,15 +112,15 @@ const SowAll = () => {
                             <div className="col-sm-2 me-5">
                                 <Link
                                     to={"/admin/sow/create"}
-                                    className="btn btn-primary d-flex justify-content-center"
+                                    className="btn btn-primary"
                                 >
                                     <span className="material-symbols-outlined">
                                         add_circle
                                     </span>
-                                    New Sow
+                                    New
                                 </Link>
                             </div>
-                            <div className="col-sm-4">
+                            <div className="col-sm-4 me-4">
                                 <input
                                     type="text"
                                     className="form-control"
@@ -129,9 +129,8 @@ const SowAll = () => {
                                     onChange={handleSearchChange}
                                 />
                             </div>
-                            <div className="col-sm-6 d-flex">
                                 <DownloadFile/>
-                            </div>
+                           
                             </div>
                             <div className="table-responsive mt-3">
                                 <table className="table table-hover table-bordered table-striped">
