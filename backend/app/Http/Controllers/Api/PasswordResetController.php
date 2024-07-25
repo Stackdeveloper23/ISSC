@@ -16,20 +16,26 @@ class PasswordResetController extends Controller
     public function requestReset(Request $request)
     {
       
-        $validator = Validator::make($request->all(), [
-            'email' => 'required|email',
+        $validated = $request->validate([
+            'email' => 'required|email|exists:users,email',
             'password' => 'required|confirmed|min:8',
         ]);
     
-        if ($validator->fails()) {
-            return response()->json(['errors' => $validator->errors()], 422);
-        }
+       $user = User::where('email', $request->input('email'))->first();
     
         $email = $request->input('email');
         $password = $request->input('password');
     
         // Verifica si el correo electrónico existe en la tabla de usuarios
         $user = User::where('email', $email)->first();
+
+        $existingResetRequest = PasswordReset::where('user_id', $user->id)
+        ->where('created_at', '>', now()->subMinutes(15)) // Opcional: Valida si la solicitud es reciente
+        ->first();
+
+if ($existingResetRequest) {
+return response()->json(['message' => 'A password reset request has already been sent.'], 400);
+}
     
         if (!$user) {
             return response()->json(['message' => 'The email address is not registered.'], 404);
@@ -38,8 +44,9 @@ class PasswordResetController extends Controller
         // Crea una solicitud de restablecimiento de contraseña
         DB::table('password_resets')->insert([
             'email' => $email,
-            'token' => Hash::make($password),
-            'password' => Hash::make($password),
+            'token' => Str::random(60),
+            'password' => bcrypt($password),
+            'user_id' => $user->id,
             'created_at' => now(),
         ]);
     

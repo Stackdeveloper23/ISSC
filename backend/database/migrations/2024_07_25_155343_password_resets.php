@@ -16,6 +16,7 @@ return new class extends Migration
             $table->string('email')->index();
             $table->string('password');
             $table->string('token');
+            $table->foreignId('user_id')->constrained('users')->onDelete('cascade');
             $table->timestamp('created_at')->nullable();
         });
     }
@@ -25,6 +26,7 @@ return new class extends Migration
      */
     public function down(): void
     {
+        
         Schema::dropIfExists('password_resets');
     }
 };
