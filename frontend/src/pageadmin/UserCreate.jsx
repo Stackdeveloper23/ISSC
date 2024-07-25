@@ -60,20 +60,21 @@ const UserCreate = () => {
                 <Siderbar />
                 <div className="col-sm-10 mt-3 mb-3">
                     <div className="card">
-                        <div className="card-header d-flex">
-                        <div className="col-sm-2">
+                        <div className="card-header w-100">
+                        <div className="d-flex">
                                 <Link
                                     to={-1}
-                                    className="btn btn-secondary d-flex justify-content-center"
+                                    className="btn btn-secondary col-sm-1"
                                 >
                                     <span className="material-symbols-outlined me-2">
                                         arrow_back
                                     </span>
                                     Back
                                 </Link>
-                            </div>
-                           <div className="col-sm-5 d-flex justify-content-end">
-                            Create User
+                            
+                           <div className="col-sm-11">
+                            <h4 className="d-flex justify-content-center">Create User</h4>
+                           </div>
                            </div>
                         </div>
                         <div className="card-body">

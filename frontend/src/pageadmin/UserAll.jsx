@@ -39,15 +39,24 @@ const UserAll = () => {
                 <div className="col-sm-11 mt-4 mb-3">
                     <div className="card">
                         <div className="card-body">
+                            <div className="d-flex justify-content-between">
                             <Link
                                 to={"/admin/user/create"}
-                                className="btn btn-primary d-flex col-sm-2"
+                                className="btn btn-primary"
                             >
                                 <span className="material-symbols-outlined">
                                     add_circle
                                 </span>
                                 Crear Usuario
                             </Link>
+                            <Link to={'/admin/user/password'} className="btn btn-secondary ">
+                            <span className="material-symbols-outlined">
+key
+</span>
+                            Requests 
+                            </Link>
+                            </div>
+                            
                             <div className="table-responsive">
                                 <table className="table text-center align-middle">
                                     <thead>

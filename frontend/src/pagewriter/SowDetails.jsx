@@ -74,6 +74,7 @@ const SowDetails = () => {
         { label: "Account Name", name: "account_name" , type: "text" ,col:6},
         { label: "Delivery Team", name: "delivery_team", type: "text", col: 6 },
         { label: "Ticket Date", name: "ticket_date", type: "text", col: 6 },
+        { label: "Create_at", name: "create_at", type: "date", col:6},
         { label: "Description", name: "sow_description", type: "textarea", col: 12 },
         { label: "Priority", name: "priority", type: "select", col: 4, field: "priority" },
         { label: "Sow Due Date", name: "sow_due_date", type: "text", col: 4 },

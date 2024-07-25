@@ -2,6 +2,7 @@
 
 namespace App\Models;
 
+use Carbon\Carbon;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 
@@ -36,6 +37,7 @@ class Sow extends Model
        'comments',
         'sow_link',
         'effort_link',
-        'slug'
+        'created_at'
     ];
+
 }

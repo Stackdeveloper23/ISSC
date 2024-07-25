@@ -1,6 +1,6 @@
 import axios from "axios";
 
-const base_api_url = "http://localhost:8000/api/v1";
+ const base_api_url = "http://localhost:8000/api/v1"; //http://localhost:8000/api/v1
 
 const getToken =()=>{
   const tokenString = sessionStorage.getItem('token')
@@ -21,6 +21,62 @@ export default{
           'Authorization': `Bearer ${token}`
         }
       })},
+
+      sendRequest: async(data) => {
+        try{
+          console.log('data' , data)
+           const response = await axios.post(`${base_api_url}/password/reset-request`, data);
+          
+           return response.data;
+        }catch(error) {
+          if (error.response) {
+            throw error.response.data;  // Lanza los datos del error para que puedan ser capturados en el componente
+        } else {
+            throw error;
+        } }
+      },
+
+    resetRequests: async () => {
+      const token = getToken();
+      try{
+        const response = await axios.get(`${base_api_url}/admin/reset-requests`, {
+          headers: {
+            'Authorization': `Bearer ${token}`
+          }
+        });
+        return response.data;
+      }catch (error){
+        console.log('error al obtener las restauraciones de contraseña', error)
+      }
+    },
+
+    resetRequestsApprove: async (id, email, password) => {
+      const token = getToken();
+      try{
+        const response = await axios.post(`${base_api_url}/admin/reset-requests/approve/${id}`,{email , password}, {
+          headers: {
+            'Authorization': `Bearer ${token}`
+          }
+        });
+        return response.data;
+      }catch (error){
+        console.log('error al restaurar la  contraseña', error)
+      }
+    },
+
+    resetRequestsCancel: async (data) => {
+      const token = getToken();
+      try{
+        const response = await axios.post(`${base_api_url}/admin/reset-requests/cancel`, data,{
+          headers: {
+            'Authorization': `Bearer ${token}`
+          }
+        });
+        return response.data
+      }catch(error){
+        console.log('error al cancelar usuarios', error)
+      }
+    },
 
    getUserAll: async () => {
     const token = getToken(); // Obtener el token

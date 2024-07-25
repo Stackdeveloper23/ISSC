@@ -17,7 +17,6 @@ return new class extends Migration
             $table->string("cls",200)->nullable();
             $table->text("opportunity_name")->nullable();
             $table->string("opportunity_id",255)->nullable();
-            $table->string("slug",100)->unique()->nullable();
             $table->string("account_name",200)->nullable();
             $table->string("delivery_team",200);
             $table->string("ticket_date",20);
@@ -35,7 +34,7 @@ return new class extends Migration
             $table->text("comments")->nullable();
             $table->string('sow_link',255)->nullable();
             $table->string('effort_link',255)->nullable();
-
+            $table->date('create_at')->default(DB::raw('CURRENT_DATE'));
         });
 
     }

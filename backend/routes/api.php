@@ -5,12 +5,17 @@ use App\Http\Controllers\Api\Admin\UserController;
 use App\Http\Controllers\Api\AuthController;
 use App\Http\Controllers\Api\Admin\SowController;
 use App\Http\Controllers\Api\ExportController;
+use App\Http\Controllers\Api\PasswordResetController;
+use App\Models\PasswordReset;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Route;
 
   Route::prefix('v1')->group(function(){
     // AUTH
     Route::post('/auth/login', [AuthController::class, 'login'])->name('login');
+    Route::post('/password/reset-request',[PasswordResetController::class, 'requestReset']);
+   
+    
     
     // PRIVATE
     Route::group(['middleware' => 'auth:sanctum'], function (){
@@ -24,6 +29,12 @@ use Illuminate\Support\Facades\Route;
         Route::apiResource('/admin/user', UserController::class);
         Route::get('/admin/user-roles', [UserController::class, 'getAllUsersWithRoles']);
         Route::post('/admin/user/create', [UserController::class, 'store']);
+
+        Route::get('/admin/reset-requests', [PasswordResetController::class, 'getResetRequests']);
+        Route::post('/admin/reset-requests/approve/{id}', [PasswordResetController::class, 'approveRequest']);
+        Route::post('/admin/reset-requests/cancel', [PasswordResetController::class, 'cancelRequest']);
+        
+        
         // ROLE ROUTES
         Route::get('/admin/roles', [RolController::class, 'index']);
 

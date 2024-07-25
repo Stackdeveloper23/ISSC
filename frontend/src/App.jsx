@@ -22,7 +22,6 @@ import SowCreate from "./pageadmin/SowCreate";
 import UserCreate from "./pageadmin/UserCreate";
 import SowDetails from "./pageadmin/SowDetails";
 import SearchBar from "./components/SearchBar";
-//import PanelWriter from './pagewriter/PanelWriter';
 import LayoutWriter from './layouts/LayoutWriter';
 
 //Writer
@@ -36,6 +35,8 @@ import SowsAlls from './pagereader/SowAll';
 import SowsDetailis from './pagereader/SowDetails';
 import PanelReader from './pagereader/PanelReader';
 import PanelWriter from './pagewriter/PanelWriter';
+import ResetRequest from './pageauth/PasswordReset';
+import ResetRequests from './pageadmin/ResetRequests';
 
 
 const App = () => {
@@ -44,6 +45,7 @@ const App = () => {
         <Routes>
             <Route path="/" element={<LayoutLogin/>}/>
             <Route path='/login' element={<Login/>}/>
+            <Route path='/reset-password' element={<ResetRequest/>}/>
             
            <Route element={<ProtectedRoutes/>}>
             <Route path="/n"element={<SearchBar/>}/>
@@ -53,6 +55,7 @@ const App = () => {
                 <Route path="user" element={<UserAll/>}/>
                 <Route path="user/edit/:id" element={<UserUpdate/>}/>
                 <Route path="user/create" element={<UserCreate/>}/>
+                <Route path='user/password' element={<ResetRequests />}/>
                 <Route path="sow" element={<SowAll/>}/>
                 <Route path="sow/create" element={<SowCreate/>}/>
                 <Route path="sow/details/:id" element={<SowDetails/>}/>

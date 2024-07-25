@@ -1,6 +1,6 @@
-import React, { useEffect, useState } from "react";
+import { useEffect, useState } from "react";
 import AuthUser from "./AuthUser";
-import { useNavigate } from "react-router-dom";
+import { Link, useNavigate } from "react-router-dom";
 import Config from "../Config";
 import axios from "axios";
 
@@ -20,7 +20,7 @@ const Login = () => {
 
    const submitLogin = async(e) =>{
         e.preventDefault();
-        await axios.get('/santum/csrf-cookie').then((response)=> {
+        await axios.get('/santum/csrf-cookie').then(()=> {
             
         Config.getLogin({email,password})
         .then(({data})=>{
@@ -62,9 +62,8 @@ error
 
                           <input type="password" className="form-control mt-3" placeholder="Password:" value={password}
                          onChange={(e)=>setPassword(e.target.value)} required/>
-
+                            <Link to='/reset-password'>Forgot Password?</Link>
                          <button onClick={submitLogin} className="btn btn-primary w-100 mt-3"> Enviar</button>
-                         <p className="text-center mt-3"><a href="#" className="small text-decoration-none">Terminos</a></p>
                     </div>
                 </div>
             </div>

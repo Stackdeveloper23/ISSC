@@ -28,6 +28,7 @@ class SowController extends Controller
             'project_id' => 'required|string',
             'account_name' => 'nullable|string|max:200',
             'delivery_team' => 'required|string',
+            'create_at'=>'nullable|date',
             'ticket_date' => 'required|date',
             'cls' => 'nullable|string',
             'opportunity_name' => 'nullable|string',
