@@ -57,7 +57,7 @@ key
                             </Link>
                             </div>
                             
-                            <div className="table-responsive">
+                            <div className="table-responsive mt-3">
                                 <table className="table text-center align-middle">
                                     <thead>
                                         <tr>

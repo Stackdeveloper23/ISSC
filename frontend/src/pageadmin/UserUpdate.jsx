@@ -67,25 +67,28 @@ const UserUpdate = () => {
         <div className="container-fluid">
             <div className="row">
                 <Siderbar />
-                <div className="col-sm-10 mt-3 mb-3">
+                <div className="col-sm-11 mt-3 mb-3">
                     <div className="card">
-                        <div className="card-header d-flex">
-                            <div className="col-sm-2 me-4">
+                        <div className="card-header ">
+                            <div className="container d-flex">
+                            <div className="col-sm-1">
                                 <Link
                                     to={-1}
                                     className="btn btn-secondary d-flex align-items-center"
                                 >
-                                    <span className="material-symbols-outlined me-2">
+                                    <span className="material-symbols-outlined">
                                         arrow_back
                                     </span>
                                     Back
                                 </Link>
                             </div>
-                            <div className="col-sm-6 d-flex justify-content-center align-items-center">
-                                Editar User id: {id}
+                            <div className="col-sm-11 d-flex justify-content-center align-items-center">
+                                Edit User id: {id}
+                            </div>
                             </div>
                         </div>
                         <div className="card-body">
+                            <div className="container">
                             <form onSubmit={submitUpdate}>
                                 <div className="col-sm-12 mt-3">
                                     <label htmlFor="name">Nombre</label>
@@ -116,6 +119,7 @@ const UserUpdate = () => {
             <select
                 id="roles"
                 className="form-select"
+                multiple
                 value={selectedRoles}
                 onChange={handleRoleChange}
             >
@@ -139,6 +143,7 @@ const UserUpdate = () => {
                                     </button>
                                 </div>
                             </form>
+                        </div>
                         </div>
                     </div>
                 </div>

@@ -48,7 +48,7 @@ const SowAll = () => {
     return (
         <div className="container">
             <div className="row">
-                <div className="col-sm-12 mt-4 mb-3">
+                <div className="col-sm-12 mt-3 mb-3">
                     <div className="card">
                         <div className="card-body">
                         <Link
@@ -59,7 +59,7 @@ const SowAll = () => {
                                 <span className="material-symbols-outlined">
                                     add_circle
                                 </span>
-                                New Sow
+                                New
                             </Link>
                             <div className="table-responsive mt-3">
                                 <table className="table table-hover table-bordered table-striped">

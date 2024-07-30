@@ -21,7 +21,7 @@ const Navbar = () => {
         if (getToken()) {
             return (
                 <>
-                    <li className="nav-item">
+                    <li className="nav-item d-flex align-items-center me-3">
                         <a className="nav-link">
                         {getRol()}
                         </a>
@@ -57,7 +57,7 @@ const Navbar = () => {
     return (
         <nav className="navbar navbar-expand-lg border border-dark" style={{ backgroundColor: "#ff6e4b"}}>
             <div className="container-fluid">
-                <Link to="/admin" className="navbar-brand">
+                <Link to="/{getRol}" className="navbar-brand">
                     <img
                         src="https://www.intraway.com/wp-content/uploads/2023/08/intraway-logo.png"
                         className="navbar-brand"

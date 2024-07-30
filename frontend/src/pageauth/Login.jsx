@@ -63,7 +63,7 @@ error
                           <input type="password" className="form-control mt-3" placeholder="Password:" value={password}
                          onChange={(e)=>setPassword(e.target.value)} required/>
                             <Link to='/reset-password'>Forgot Password?</Link>
-                         <button onClick={submitLogin} className="btn btn-primary w-100 mt-3"> Enviar</button>
+                         <button onClick={submitLogin} className="btn btn-primary w-100 mt-3"> Send</button>
                     </div>
                 </div>
             </div>

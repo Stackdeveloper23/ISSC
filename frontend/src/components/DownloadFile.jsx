@@ -34,10 +34,10 @@ const DownloadFile = () => {
     <div className='d-flex col-sm-5 justify-content-end'>
       {isLoading && <p>Descargando...</p>}
       {error && <p>Error al descargar: {error}</p>}
-      <button onClick={downloadFile} className='btn btn-secondary'><span className="material-symbols-outlined">
+      <div onClick={downloadFile}><span className="material-symbols-outlined">
 download
 </span>
-</button>
+</div>
     </div>
   );
 };

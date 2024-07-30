@@ -132,8 +132,8 @@ const SowAll = () => {
                                 <DownloadFile/>
                            
                             </div>
-                            <div className="table-responsive mt-3">
-                                <table className="table table-hover table-bordered table-striped">
+                            <div className="table-responsive-xl mt-3">
+                                <table className="table table-hover table-bordered align-middle">
                                     <thead>
                                         <tr className="table-secondary">
                                             <th className="col-sm-2">Sow-Ticket</th>
@@ -161,9 +161,9 @@ const SowAll = () => {
                                                     <td>{item.sow_status}</td>
                                                     <td>
                                                         <Link
+                                                            id="btn-view"
                                                             to={`/admin/sow/details/${item.ticket_sow}`}
-                                                            className="btn d-flex justify-content-center w-50"
-                                                            style={{ backgroundColor: "#F9E2AF" }}>
+                                                            className="btn d-flex justify-content-center w-50">
                                                             <span className="material-symbols-outlined">
                                                                 pageview
                                                             </span>

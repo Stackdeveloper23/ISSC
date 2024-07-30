@@ -102,7 +102,7 @@ const SowDetails = () => {
 
     return (
         <div className="container">
-            <div className="row mt-5 d-flex justify-content-center">
+            <div className="row mt-3 d-flex justify-content-center">
                 <div className="mt-3 mb-3">
                     <div className="card">
                         <div className="card-body">

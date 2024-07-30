@@ -1,6 +1,6 @@
 import axios from "axios";
 
- const base_api_url = "http://localhost:8000/api/v1"; //http://localhost:8000/api/v1
+ const base_api_url = "https://lvf7b0hc-8000.use2.devtunnels.ms/api/v1"; //http://localhost:8000/api/v1
 
 const getToken =()=>{
   const tokenString = sessionStorage.getItem('token')

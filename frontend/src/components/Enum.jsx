@@ -1,4 +1,4 @@
-import React, { useState, useEffect } from 'react';
+import { useState, useEffect } from 'react';
 import Config from '../Config';
 
 const Enum = ({ value, onChange, field }) => {
@@ -8,8 +8,6 @@ const Enum = ({ value, onChange, field }) => {
         const fetchOptions = async () => {
             try {
                 const response = await Config.getEnum(field);
-                console.log('Respuesta de la API:', response.data);
-
                 if (Array.isArray(response.data)) {
                     setOptions(response.data);
                 } else {

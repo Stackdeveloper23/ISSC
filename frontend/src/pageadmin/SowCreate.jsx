@@ -68,9 +68,8 @@ const SowCreate = () => {
             <div className="row">
                 <Siderbar />
                 <div className="col-sm-11 mt-3 mb-3 ">
-                    <div className="card border border-dark">
-                        <div className="card-body">
-                            <div className="col-sm-2">
+                    <div className="card border border-dark-subtle">
+                    <div className="col-sm-1 ms-3 mt-3">
                                 <Link
                                     to={-1}
                                     className="btn btn-secondary d-flex justify-content-center"
@@ -81,12 +80,16 @@ const SowCreate = () => {
                                     Back
                                 </Link>
                             </div>
+                        <div className="card-body ms-5 me-5">
+
+                            
                             <form onSubmit={submitCreate}>
                                 <div className="form-group row">
                                     {fields.map((field, index) => (
                                         <div
                                             key={index}
                                             className={`col-sm-${field.col}`}
+                                            style={{ marginBottom: "15px"}}
                                         >
                                             <label>{field.label}</label>
                                             {field.type === "textarea" ? (
@@ -139,10 +142,10 @@ const SowCreate = () => {
                                 </button>
                             </form>
                         </div>
+                        </div>
                     </div>
                 </div>
             </div>
-        </div>
     );
 };
 
