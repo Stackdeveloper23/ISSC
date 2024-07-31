@@ -31,10 +31,10 @@ const DownloadFile = () => {
   };
 
   return (
-    <div className='d-flex col-sm-5 justify-content-end'>
+    <div className='d-flex col-sm-5 justify-content-end align-items-center'>
       {isLoading && <p>Descargando...</p>}
       {error && <p>Error al descargar: {error}</p>}
-      <div onClick={downloadFile}><span className="material-symbols-outlined">
+      <div onClick={downloadFile} style={{cursor: 'pointer'}}><span className="material-symbols-outlined">
 download
 </span>
 </div>

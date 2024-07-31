@@ -47,7 +47,7 @@ const UserAll = () => {
                                 <span className="material-symbols-outlined">
                                     add_circle
                                 </span>
-                                Crear Usuario
+                                New
                             </Link>
                             <Link to={'/admin/user/password'} className="btn btn-secondary ">
                             <span className="material-symbols-outlined">
@@ -92,7 +92,7 @@ key
                                                                 <span className="material-symbols-outlined">
                                                                     edit
                                                                 </span>
-                                                                Editar
+                                                                
                                                             </Link>
                                                             <button
                                                                 className="btn btn-danger d-flex w-30"
@@ -105,7 +105,7 @@ key
                                                                 <span className="material-symbols-outlined">
                                                                     delete
                                                                 </span>
-                                                                Delete
+                                                                
                                                             </button>
                                                         </div>
                                                     </td>

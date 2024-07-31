@@ -1,6 +1,6 @@
 import { useEffect } from 'react'
 import Navbar from '../components/Navbar'
-import { Link, Outlet, useNavigate } from 'react-router-dom'
+import { Outlet, useNavigate } from 'react-router-dom'
 import AuthUser from '../pageauth/AuthUser'
 
 const LayoutReader = () => {

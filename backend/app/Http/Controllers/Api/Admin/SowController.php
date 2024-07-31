@@ -89,10 +89,9 @@ class SowController extends Controller
 
     public function getEnumOptions($field)
     {
-        // Reemplaza 'your_table_name' por el nombre de tu tabla
         $table = 'sows';
 
-        // Obtener las opciones del enum
+        
         $column = DB::select("SHOW COLUMNS FROM `{$table}` WHERE Field = ?", [$field])[0];
         $type = $column->Type;
         

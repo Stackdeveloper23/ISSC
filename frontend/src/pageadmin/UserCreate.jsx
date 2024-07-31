@@ -11,7 +11,8 @@ const UserCreate = () => {
     const [password, setPassword] = useState("");
     const [password_confirmation, setpassword_confirmation] = useState("");
     const [roles, setRoles] = useState([]);
-    const [selectedRoles, setSelectedRoles] = useState([]);
+    const [selectedRoles, setSelectedRoles] = useState("");
+    const [errors, setErrors] = useState({});
 
     useEffect(() => {
         const fetchRoles = async () => {
@@ -47,10 +48,23 @@ const UserCreate = () => {
             };
 
             await Config.getUserCreate(currentUser, id);
-            console.log("Usuario actualizado correctamente");
+            console.log("Usuario creado correctamente");
             navigate("/admin/user");
         } catch (error) {
-            console.error("Error al actualizar usuario:", error);
+            if (
+                error.response &&
+                error.response.data &&
+                error.response.data.errors
+            ) {
+                const serverErrors = error.response.data.errors;
+                const newErrors = {};
+                Object.keys(serverErrors).forEach((key) => {
+                    newErrors[key] = serverErrors[key][0];
+                });
+                setErrors(newErrors);
+            } else {
+                console.error("Unexpected error:", error);
+            }
         }
     };
 
@@ -77,40 +91,62 @@ const UserCreate = () => {
                            </div>
                            </div>
                         </div>
-                        <div className="card-body">
+                        <div className="card-body ps-5 pe-5">
+                       
                             <form onSubmit={submitCreate}>
                                 <div className="col-sm-12 mt-3">
                                     <label htmlFor="name">Name:</label>
                                     <input
                                         type="text"
                                         className="form-control"
+                                        name="name"
                                         value={name}
                                         onChange={(e) =>
                                             setName(e.target.value)
                                         }
+
                                     />
+                                     {errors.name && (
+                                            <div className="text-danger">
+                                                {errors.name}
+                                            </div>
+                                        )}
                                 </div>
                                 <div className="col-sm-12 mt-3">
                                     <label htmlFor="name">Email:</label>
                                     <input
                                         type="text"
                                         className="form-control"
+                                        name="email"
                                         value={email}
                                         onChange={(e) =>
                                             setEmail(e.target.value)
                                         }
+                                      
                                     />
+                                      {errors.email && (
+                                            <div className="text-danger">
+                                                {errors.email}
+                                            </div>
+                                        )}
                                 </div>
                                 <div className="col-sm-12 mt-3">
                                     <label htmlFor="name">Password:</label>
                                     <input
                                         type="password"
                                         className="form-control"
+                                        name="password"
                                         value={password}
                                         onChange={(e) =>
                                             setPassword(e.target.value)
                                         }
+                                       
                                     />
+                                     {errors.password && (
+                                            <div className="text-danger">
+                                                {errors.password}
+                                            </div>
+                                        )}
                                 </div>
                                 <div className="col-sm-12 mt-3">
                                     <label htmlFor="name">
@@ -119,24 +155,33 @@ const UserCreate = () => {
                                     <input
                                         type="password"
                                         className="form-control"
+                                        name="password_confirmation"
                                         value={password_confirmation}
                                         onChange={(e) =>
                                             setpassword_confirmation(
                                                 e.target.value
                                             )
                                         }
+                                      
                                     />
+                                      {errors.password_confirmation && (
+                                            <div className="text-danger">
+                                                {errors.password_confirmation}
+                                            </div>
+                                        )}
                                 </div>
                                 <div className="col-sm-12 mt-3">
                                     <label htmlFor="roles">Rol:</label>
 
                                     <select
                                         
-                                        className="form-select"
-                                        multiple
+                                        className="form-select"                        
                                         value={selectedRoles}
                                         onChange={handleRoleChange}
                                     >
+                                        <option value="" disabled>
+                                            Select User rol
+                                        </option>
                                         {Array.isArray(roles) &&
                                             roles.map((role) => (
                                                 <option
@@ -147,6 +192,11 @@ const UserCreate = () => {
                                                 </option>
                                             ))}
                                     </select>
+                                    {errors.roles && (
+                                        <div className="text-danger">
+                                            {errors.roles}
+                                        </div>
+                                    )}
                                 </div>
 
                                 <div className="btn-group mt-3">
@@ -161,7 +211,7 @@ const UserCreate = () => {
                                     </button>
                                 </div>
                             </form>
-                        </div>
+                        </div>                      
                     </div>
                 </div>
             </div>

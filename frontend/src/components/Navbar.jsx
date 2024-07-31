@@ -27,7 +27,7 @@ const Navbar = () => {
                         </a>
                     </li>
                     <li className="nav-item">
-                        <button className="btn btn-outline-primary ">
+                        <button className="btn btn-outline-primary" style={{border: 'none'}}>
                             <a
                                 className="nav-link d-flex"
                                 href="#"

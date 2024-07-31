@@ -21,7 +21,6 @@ import SowAll from "./pageadmin/SowAll";
 import SowCreate from "./pageadmin/SowCreate";
 import UserCreate from "./pageadmin/UserCreate";
 import SowDetails from "./pageadmin/SowDetails";
-import SearchBar from "./components/SearchBar";
 import LayoutWriter from './layouts/LayoutWriter';
 
 //Writer
@@ -48,7 +47,6 @@ const App = () => {
             <Route path='/reset-password' element={<ResetRequest/>}/>
             
            <Route element={<ProtectedRoutes/>}>
-            <Route path="/n"element={<SearchBar/>}/>
 
            <Route path="/admin" element={<LayoutAdmin/>}>
                 <Route index element={<PanelAdmin/>}/>
