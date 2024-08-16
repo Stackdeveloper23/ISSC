@@ -15,17 +15,17 @@ services:
     build:
       context: ./frontend
     ports:
-      - "3000:80"
+      - "5173:3000"
     depends_on:
       - backend
 
   db:
     image: mariadb:10.5
     environment:
-      MYSQL_ROOT_PASSWORD: rootpassword
-      MYSQL_DATABASE: yourdatabase
-      MYSQL_USER: youruser
-      MYSQL_PASSWORD: yourpassword
+      MYSQL_ROOT_PASSWORD: 
+      MYSQL_DATABASE: issc
+      MYSQL_USER: root
+      MYSQL_PASSWORD: 
     volumes:
       - db_data:/var/lib/mysql
 

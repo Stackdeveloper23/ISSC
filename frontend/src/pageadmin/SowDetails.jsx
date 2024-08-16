@@ -2,6 +2,8 @@ import { useEffect, useState } from "react";
 import { Link, useParams, useNavigate } from "react-router-dom";
 import Config from "../Config";
 import Enum from "../components/Enum";
+import moment from "moment";
+//import moment from "moment";
 
 const SowDetails = () => {
     const { id } = useParams();
@@ -31,12 +33,25 @@ const SowDetails = () => {
         effort_link: "",
     });
 
+    const [creatorInfo, setCreatorInfo] = useState(null);
+    
+
     useEffect(() => {
         const getSowById = async () => {
             try {
                 const response = await Config.getSowById(id);
                 const data = response.data;
                 setFormData(data);
+
+                try{const creator = await Config.getSowCreateInfo(id);
+                    console.log("datos del creador:", creator)
+                    setCreatorInfo(creator || null);
+
+                } catch (creatorError){
+                    console.error('erro al obtener informacion del creador', creatorError);
+                    setCreatorInfo(null);
+                }
+
             } catch (error) {
                 console.error("Error fetching SOW:", error);
                 navigate("/error");
@@ -57,7 +72,7 @@ const SowDetails = () => {
         ev.preventDefault();
         try {
             console.log(formData);
-            await Config.getSowsUpdate(formData, id);
+            await Config.getSowUpdate(formData, id);
             console.log("Sow actualizado correctamente");
             navigate("/admin/sow");
         } catch (error) {
@@ -76,42 +91,42 @@ const SowDetails = () => {
     };
 
     const fields = [
-        { label: "Sow Ticket", name: "ticket_sow", type: "text", col: 4 },
-        { label: "CLS", name: "cls", type: "text", col: 8 },
-        { label: "Opportunity Name", name: "opportunity_name", type: "text", col: 6 },
+        { label: "Sow Ticket", name: "ticket_sow", type: "text", col: 3 },
+        { label: "CLS", name: "cls", type: "text", col: 6 },
+        { label: "Opportunity Name", name: "opportunity_name", type: "text", col: 8 },
         { label: "Opportunity ID", name: "opportunity_id", type: "text", col: 6 },
-        { label: "Account Name", name: "account_name" , type: "text" ,col:6},
-        { label: "Delivery Team", name: "delivery_team", type: "text", col: 6 },
-        { label: "Ticket Date", name: "ticket_date", type: "date", col: 6 },
-        { label: "Create_at", name: "create_at", type: "date", col:6},
-        { label: "Description", name: "sow_description", type: "textarea", col: 12 },
+        { label: "Account Name", name: "account_name", type: "text", col: 6 },
+        { label: "Delivery Team", name: "delivery_team", type: "text", col: 4 },
+        { label: "Ticket Date", name: "ticket_date", type: "date", col: 4 },
+        { label: "Create_at", name: "create_at", type: "date", col: 4 },
+        { label: "Description", name: "sow_description", type: "textarea", col: 8 },
         { label: "Priority", name: "priority", type: "select", col: 4, field: "priority" },
         { label: "Sow Due Date", name: "sow_due_date", type: "date", col: 4 },
         { label: "Effort Due Date", name: "effort_due_date", type: "date", col: 4 },
         { label: "Sow Status", name: "sow_status", type: "select", col: 6, field: "sow_status" },
-        { label: "Delivery Date", name: "sow_delivery_date", type: "date", col: 6 },
+        { label: "Delivery Date", name: "sow_delivery_date", type: "date", col: 4 },
         { label: "Effort Owner", name: "effort_owner", type: "text", col: 6 },
         { label: "Project ID", name: "project_id", type: "text", col: 6 },
         { label: "Sow Owner", name: "sow_owner", type: "text", col: 4 },
         { label: "Effort Status", name: "effort_status", type: "select", col: 4, field: "effort_status" },
         { label: "Effort Delivery Date", name: "effort_delivery_date", type: "date", col: 4 },
-        { label: "Comments", name: "comments", type: "textarea", col: 12 },
+        { label: "Comments", name: "comments", type: "textarea", col: 8 },
         { label: "Sow Link", name: "sow_link", type: "text", col: 6 },
         { label: "Effort Link", name: "effort_link", type: "text", col: 6 },
     ];
 
     return (
-        <div className="container">
+        <div className=" ms-5 me-5">
             <div className="row mt-3 d-flex justify-content-center">
-                <div className="mt-3 mb-3">
-                    <div className="card">
-                        <div className="card-body">
-                            <form onSubmit={submitUpdate}>
-                                <div className="form-group row">
-                                    <div className="col-sm-2">
+                <div className="col-lg-10">
+                    <div className="card mt-3 mb-3">
+                        <div className="card-body ps-5 pe-5">
+                            <div className="d-flex">
+                            <div className="col-sm-2">
                                         <Link
                                             to="/admin/sow"
                                             className="btn btn-secondary  d-flex align-items-center"
+                                            style={{width: "100px"}}
                                         >
                                             <span className="material-symbols-outlined me-2">
                                                 arrow_back
@@ -119,12 +134,18 @@ const SowDetails = () => {
                                             Back
                                         </Link>
                                     </div>
+                            <h3 className="card-title text-center col-sm-8 mb-4">SOW DETAILS</h3>
+                            </div>
+                            <form onSubmit={submitUpdate}>
+                                <div className="form-row d-flex flex-column justify-content-center">
+                              
+                                
                                     {fields.map((field, index) => (
                                         <div
                                             key={index}
-                                            className={`col-sm-${field.col}`}
+                                            className={`col-md-${field.col} mb-3 mx-auto`}
                                         >
-                                            <label>{field.label}</label>
+                                            <label className="mb-1 semi-bold">{field.label}</label>
                                             {field.type === "textarea" ? (
                                                 <textarea
                                                     className="form-control"
@@ -150,34 +171,42 @@ const SowDetails = () => {
                                         </div>
                                     ))}
                                 </div>
-                                <div className="form-group row">
-                                    <div className="mt-3 col-sm-6">
-                                        <button
-                                            type="submit"
-                                            className="btn btn-primary d-flex"
-                                        >
-                                            <span className="material-symbols-outlined">
-                                                upgrade
-                                            </span>
-                                            Update Sow
-                                        </button>
-                                    </div>
-                                    <div className="mt-3 col-sm-6 d-flex justify-content-end">
-                                        <button
-                                            type="button"
-                                            onClick={handleDelete}
-                                            className="btn btn-danger d-flex"
-                                        >
-                                            <span className="material-symbols-outlined">
-                                                delete
-                                            </span>
-                                            Delete
-                                        </button>
-                                    </div>
+                                <div className="form-group d-flex justify-content-between mt-4">
+                                    <button
+                                        type="submit"
+                                        className="btn btn-primary"
+                                    >
+                                        <span className="material-symbols-outlined">
+                                            upgrade
+                                        </span>
+                                        Update Sow
+                                    </button>
+                                    <button
+                                        type="button"
+                                        onClick={handleDelete}
+                                        className="btn btn-danger"
+                                    >
+                                        <span className="material-symbols-outlined">
+                                            delete
+                                        </span>
+                                        Delete
+                                    </button>
                                 </div>
                             </form>
+                            <div className="mt-4">
+                                <h4>Creator Information</h4>
+                                {creatorInfo ? (
+                                    <>
+                                        <p><strong>Created By:</strong> {creatorInfo.user_name || 'N/A'}</p>
+                                        <p><strong>Created At:</strong> {creatorInfo.created_at ? moment(creatorInfo.created_at).format('MMMM Do YYYY, h:mm:ss a') : 'N/A'}</p>
+
+                                    </>
+                                ) : (
+                                    <p>Information not found.</p>
+                                )}
+                            </div>
+                            </div>
                         </div>
-                    </div>
                 </div>
             </div>
         </div>

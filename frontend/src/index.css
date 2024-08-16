@@ -36,3 +36,14 @@
     display: block !important;
   } 
 
+  select {
+    text-transform: uppercase;
+  }
+
+  .uppercase-column {
+    text-transform: uppercase;
+  }
+
+  .semi-bold {
+    font-weight: 600;
+  }

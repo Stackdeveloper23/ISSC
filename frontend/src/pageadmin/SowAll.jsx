@@ -87,7 +87,7 @@ const SowAll = () => {
     const filteredSows = allSows.filter((item) =>
         item.ticket_sow.toLowerCase().includes(searchTerm.toLowerCase()) ||
         item.sow_description.toLowerCase().includes(searchTerm.toLowerCase()) ||
-        item.project_id.toString().toLowerCase().includes(searchTerm.toLowerCase()) ||
+        item.project_id?.toString().toLowerCase().includes(searchTerm.toLowerCase()) ||
         item.delivery_team.toLowerCase().includes(searchTerm.toLowerCase()) ||
         item.ticket_date.toLowerCase().includes(searchTerm.toLowerCase()) ||
         item.sow_status.toLowerCase().includes(searchTerm.toLowerCase())
@@ -157,8 +157,8 @@ const SowAll = () => {
                                                     <td>{item.sow_description}</td>
                                                     <td>{item.project_id}</td>
                                                     <td>{item.delivery_team}</td>
-                                                    <td>{item.ticket_date}</td>
-                                                    <td>{item.sow_status}</td>
+                                                    <td>{new Date(item.ticket_date).toLocaleDateString("es-CO")}</td>
+                                                    <td className="uppercase-column">{item.sow_status}</td>
                                                     <td>
                                                         <Link
                                                             id="btn-view"

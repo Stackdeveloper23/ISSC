@@ -4,8 +4,10 @@ namespace App\Http\Controllers\Api\Admin;
 
 use App\Http\Controllers\Controller;
 use App\Models\sow;
+use App\Models\SowByUser;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\DB;
+use Illuminate\Support\Facades\Log;
 use Illuminate\Support\Facades\Schema;
 
 class SowController extends Controller
@@ -37,7 +39,7 @@ class SowController extends Controller
             'priority' => 'nullable|in:low,medium,high',
             'sow_due_date' => 'nullable|date',
             'effort_due_date' => 'nullable|date',
-            'project_id' => 'required|string|max:255',
+            'project_id' => 'nullable|string|max:255',
             'sow_owner' => 'nullable|string|max:255',
             'sow_status' => 'nullable|in:new,in_progress,closed,blocked',
             'sow_delivery_date' => 'nullable|date',
@@ -48,10 +50,38 @@ class SowController extends Controller
             'sow_link' => 'nullable|url',
             'effort_link' => 'nullable|url'
         ]);
+        
+        DB::beginTransaction();
 
-        $sow = Sow::create($validatedData);
-
-        return response()->json($sow, 200);
+        try {
+            // Crear el registro en la tabla 'sows'
+            $sow = Sow::create($validatedData);
+            $user = auth()->user();
+    
+            // Crear el registro en la tabla 'create_sows_by_user'
+            SowByUser::create([
+                'sow_id' => $sow->ticket_sow,
+                'created_by' => $user->id,
+                'user_name' => $user->name,
+                'created_at' => now(),  // Fecha y hora actuales
+            ]);
+    
+            // Confirmar la transacción
+            DB::commit();
+    
+            return response()->json($sow, 200);
+        } catch (\Exception $e) {
+            // Revertir la transacción en caso de error
+            DB::rollBack();
+    
+            // Registrar el error en los logs
+            Log::error('Error al crear el registro: ' . $e->getMessage(), [
+                'exception' => $e,
+                'request_data' => $request->all()
+            ]);
+    
+            return response()->json(['error' => 'Failed to create sow'], 500);
+        }
     }
 
  
@@ -108,5 +138,20 @@ class SowController extends Controller
         return response()->json($enum);
     }
     
+    public function getCreatorInfo($ticket_sow)
+    {
+        $sowByUser = SowByUser::where('sow_id', $ticket_sow)->first();
 
+        if (!$sowByUser) {
+            return response()->json(['error' => 'Registro no encontrado'], 404);
+        }
+    
+        // Retornar la información del creador
+        return response()->json([
+            'sow_id' => $sowByUser->sow_id,
+            'created_by' => $sowByUser->created_by,
+            'user_name' => $sowByUser->user_name,
+            'created_at' => $sowByUser->created_at
+        ], 200);
+    }
 }

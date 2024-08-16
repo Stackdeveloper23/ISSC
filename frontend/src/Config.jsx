@@ -93,6 +93,21 @@ export default{
     }
   },
 
+  getSowCreateInfo: async (ticket_sow) => {
+    const token = getToken();
+    try{
+      const response = await axios.get(`${base_api_url}/admin/sows/${ticket_sow}/creator`,{
+        headers: {
+          'Authorization': `Bearer ${token}`
+        }
+      });
+      return response.data;
+    } catch (error) {
+      console.error('error al obtener informacion del creador', error);
+      throw error;
+    }
+  },
+
   getUserAllWithRoles: async () => {
     const token = getToken();
     try{
@@ -281,7 +296,7 @@ export default{
 
                 downloadSow:()=>{
                   const token = getToken();
-                  return axios.get('http://localhost:8000/api/v1/export/xlsx',{
+                  return axios.get(`${base_api_url}/export/xlsx`,{
                     headers: {
                       'Authorization': `Bearer ${token}`
                     },

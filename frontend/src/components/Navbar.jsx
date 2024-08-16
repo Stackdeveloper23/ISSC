@@ -67,7 +67,7 @@ const Navbar = () => {
                 </Link>
                 <ButtonTheme />
                 <div className="container d-flex justify-content-center align-items-center">
-                    <h3 className="text-light">Implementation Sow System Control</h3>
+                    <h3 className="text-light">SCSI</h3>
                 </div>
                 <button
                     className="navbar-toggler"

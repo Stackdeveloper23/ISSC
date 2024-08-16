@@ -33,7 +33,7 @@ use Illuminate\Support\Facades\Route;
         Route::get('/admin/reset-requests', [PasswordResetController::class, 'getResetRequests']);
         Route::post('/admin/reset-requests/approve/{id}', [PasswordResetController::class, 'approveRequest']);
         Route::post('/admin/reset-requests/cancel', [PasswordResetController::class, 'cancelRequest']);
-        
+        Route::get('/admin/sows/{ticket_sow}/creator',[SowController::class, 'getCreatorInfo']);
         
         // ROLE ROUTES
         Route::get('/admin/roles', [RolController::class, 'index']);
