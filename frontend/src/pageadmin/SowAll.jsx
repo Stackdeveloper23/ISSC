@@ -150,7 +150,7 @@ const SowAll = () => {
                                             <tr>
                                                 <td colSpan="7">Loading...</td>
                                             </tr>
-                                        ) : dataToDisplay.length > 0 ? ( // Usar datos a mostrar
+                                        ) : dataToDisplay.length > 0 ? ( 
                                             dataToDisplay.map((item) => (
                                                 <tr key={item.ticket_sow}>
                                                     <td>{item.ticket_sow}</td>

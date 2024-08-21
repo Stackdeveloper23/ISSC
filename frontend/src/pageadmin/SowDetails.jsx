@@ -39,7 +39,7 @@ const SowDetails = () => {
     useEffect(() => {
         const getSowById = async () => {
             try {
-                const response = await Config.getSowById(id);
+                const response = await Config.getsSowsById(id);
                 const data = response.data;
                 setFormData(data);
 
@@ -194,7 +194,7 @@ const SowDetails = () => {
                                 </div>
                             </form>
                             <div className="mt-4">
-                                <h4>Creator Information</h4>
+                                <h4>Create Information</h4>
                                 {creatorInfo ? (
                                     <>
                                         <p><strong>Created By:</strong> {creatorInfo.user_name || 'N/A'}</p>

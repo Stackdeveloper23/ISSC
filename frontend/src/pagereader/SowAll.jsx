@@ -13,9 +13,7 @@ const SowAll = () => {
         const fetchSows = async (page) => {
             try {
                 const response = await Config.getSowsAll(page);
-                console.log("API Response:", response); // Verificar la respuesta completa
-
-                // Verifica la estructura de la respuesta
+                console.log("API Response:", response); 
                 if (response && response.data) {
                     console.log("Data part of response:", response.data);
 
@@ -69,15 +67,15 @@ const SowAll = () => {
                                             <tr>
                                                 <td colSpan="7">Loading...</td>
                                             </tr>
-                                        ) : sow.length > 0 ? ( // Asegúrate de que sow no sea undefined
+                                        ) : sow.length > 0 ? ( 
                                             sow.map((item) => (
                                                 <tr key={item.ticket_sow}>
                                                     <td>{item.ticket_sow}</td>
                                                     <td>{item.sow_description}</td>
                                                     <td>{item.project_id}</td>
                                                     <td>{item.delivery_team}</td>
-                                                    <td>{item.ticket_date}</td>
-                                                    <td>{item.sow_status}</td>
+                                                    <td>{new Date(item.ticket_date).toLocaleDateString("es-CO")}</td>
+                                                    <td className="uppercase-column">{item.sow_status}</td>
                                                     <td>
                                                         <Link
                                                             to={`/reader/sow/details/${item.ticket_sow}`}

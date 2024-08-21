@@ -86,8 +86,8 @@ const SowAll = () => {
                                                     <td>{item.sow_description}</td>
                                                     <td>{item.project_id}</td>
                                                     <td>{item.delivery_team}</td>
-                                                    <td>{item.ticket_date}</td>
-                                                    <td>{item.sow_status}</td>
+                                                    <td>{new Date(item.ticket_date).toLocaleDateString("es-CO")}</td>
+                                                    <td className="uppercase-column">{item.sow_status}</td>
                                                     <td>
                                                         <Link
                                                             to={`/writer/sow/details/${item.ticket_sow}`}
