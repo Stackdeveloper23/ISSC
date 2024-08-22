@@ -61,7 +61,7 @@ const UserUpdate = () => {
     <div className="container-fluid">
       <div className="row">
         <Siderbar />
-        <div className="col-sm-11 mt-3 mb-3">
+        <div className="col-sm-10 mt-3 mb-3">
           <div className="card">
             <div className="card-header">
               <div className="container d-flex">

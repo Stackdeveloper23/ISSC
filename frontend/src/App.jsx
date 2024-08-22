@@ -1,10 +1,9 @@
 import 'bootstrap/dist/css/bootstrap.min.css';
 import 'bootstrap/dist/js/bootstrap.bundle.min.js';
-
+import '@fortawesome/fontawesome-free/css/all.min.css';
 //Layouts
 import LayoutLogin from "./layouts/LayoutLogin";
 import LayoutAdmin from "./layouts/LayoutAdmin";
-//import LayoutClient from "./layouts/LayoutWriter";
 
 //public
 import ProtectedRoutes from "./pageauth/ProtectedRoutes";

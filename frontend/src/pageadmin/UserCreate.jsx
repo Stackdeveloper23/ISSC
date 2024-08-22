@@ -13,6 +13,8 @@ const UserCreate = () => {
     const [roles, setRoles] = useState([]);
     const [selectedRoles, setSelectedRoles] = useState("");
     const [errors, setErrors] = useState({});
+    const [passwordVisible, setPasswordVisible] = useState(false);
+
 
     useEffect(() => {
         const fetchRoles = async () => {
@@ -27,6 +29,10 @@ const UserCreate = () => {
 
         fetchRoles();
     }, []);
+
+    const togglePasswordVisibility = () => {
+        setPasswordVisible(!passwordVisible);
+      };
 
     const handleRoleChange = (e) => {
         const value = Array.from(
@@ -147,6 +153,7 @@ const UserCreate = () => {
                                                 {errors.password}
                                             </div>
                                         )}
+                                     
                                 </div>
                                 <div className="col-sm-12 mt-3">
                                     <label htmlFor="name">

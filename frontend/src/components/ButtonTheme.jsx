@@ -4,12 +4,6 @@ import 'bootstrap/dist/js/bootstrap.bundle.min.js';
 
 const ButtonTheme = () => {
 
-        const [isActive, setIsActive] = useState(false);
-      
-        const handleButtonClick = () => {
-          setIsActive((prevIsActive) => !prevIsActive);
-        };
-    
     const [theme, setTheme] = useState(() => {
         return (
             localStorage.getItem("theme") ||
@@ -101,14 +95,13 @@ const ButtonTheme = () => {
         <div className="dropdown position-fixed bottom-0 end-0 mb-3 me-3 bd-mode-toggle">
             {svg()}
             <button
-                className={`btn btn-bd-primary py-2 dropdown-toggle d-flex align-items-center ${isActive ? 'btn-active' : 'btn-opacity'}`}
-                onClick={handleButtonClick}
+                className="btn btn-bd-primary py-2 dropdown-toggle d-flex align-items-center"
                 id="bd-theme"
                 type="button"
                 aria-expanded="false"
                 data-bs-toggle="dropdown"
                 aria-label="Toggle theme (auto)"
-                data-bs-flip="false" 
+                data-bs-flip="false"
             >
                 <svg
                     className="bi my-1 theme-icon-active"
@@ -130,7 +123,7 @@ const ButtonTheme = () => {
                     inset: "auto 0px 0px auto",
                     margin: "0px",
                     transform: "translate(0px, -44px)",
-                }} // Aplica los estilos personalizados
+                }}
             >
                 <li>
                     <button

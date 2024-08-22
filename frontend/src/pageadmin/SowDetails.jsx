@@ -3,7 +3,6 @@ import { Link, useParams, useNavigate } from "react-router-dom";
 import Config from "../Config";
 import Enum from "../components/Enum";
 import moment from "moment";
-//import moment from "moment";
 
 const SowDetails = () => {
     const { id } = useParams();
@@ -39,7 +38,7 @@ const SowDetails = () => {
     useEffect(() => {
         const getSowById = async () => {
             try {
-                const response = await Config.getsSowsById(id);
+                const response = await Config.getSowById(id);
                 const data = response.data;
                 setFormData(data);
 

@@ -4,7 +4,7 @@ import ButtonTheme from "./ButtonTheme";
 
 const Navbar = () => {
     const { getRol, getLogout, getToken } = AuthUser();
-
+    const rol = getRol();
     const logoutUser = () => {
         const token = getToken();
 
@@ -57,7 +57,7 @@ const Navbar = () => {
     return (
         <nav className="navbar navbar-expand-lg border border-dark" style={{ backgroundColor: "#ff6e4b"}}>
             <div className="container-fluid">
-                <Link to="/{getRol}" className="navbar-brand">
+                <Link to={`/${rol}`} className="navbar-brand">
                     <img
                         src="https://www.intraway.com/wp-content/uploads/2023/08/intraway-logo.png"
                         className="navbar-brand"

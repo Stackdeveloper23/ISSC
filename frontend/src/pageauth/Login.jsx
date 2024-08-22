@@ -10,12 +10,21 @@ const Login = () => {
   const [password, setPassword] = useState("");
   const [message, setMessage] = useState("");
   const navigate = useNavigate();
+  const [passwordVisible, setPasswordVisible] = useState(false);
+
+  
 
   useEffect(() => {
+
+
     if (getToken()) {
       navigate("/");
     }
   }, []);
+
+  const togglePasswordVisibility = () => {
+    setPasswordVisible(!passwordVisible);
+  };
 
   const submitLogin = async (e) => {
     e.preventDefault();
@@ -56,7 +65,7 @@ const Login = () => {
                   alt="logo"
                 />
               </div>
-              <h1 className="text-center fw-bolder mb-5">Login</h1>
+              <h1 className="text-center fw-bolder mb-3">Login</h1>
               {message && (
                 <div className="text-center text-wrap alert alert-danger">
                   <span className="material-symbols-outlined">error</span>
@@ -64,7 +73,9 @@ const Login = () => {
                 </div>
               )}
               <form onSubmit={submitLogin}>
+                <div className="form-floating">
                 <input
+                  id="floatingInput1"
                   type="email"
                   className="form-control mt-3"
                   placeholder="Email:"
@@ -72,20 +83,36 @@ const Login = () => {
                   onChange={(e) => setEmail(e.target.value)}
                   required
                 />
-
+                <label htmlFor="floatingInput1">Email address</label>
+                </div>
+                <div className="form-floating position-relative">
                 <input
-                  type="password"
+                  id="floatingInput"
+                  type={passwordVisible ? 'text' : 'password'}
                   className="form-control mt-3"
-                  placeholder="Password:"
+                  placeholder="Password"
                   value={password}
                   onChange={(e) => setPassword(e.target.value)}
                   required
                 />
+                <label htmlFor="floatingInput">Password</label>
+    
+                <span
+        id="togglePassword"
+        className="position-absolute top-50 end-0 translate-middle-y me-3"
+        style={{ cursor: 'pointer' }}
+        onClick={togglePasswordVisibility}
+      >
+        <i className={passwordVisible ? 'fas fa-eye-slash' : 'fas fa-eye'}></i>
+      </span>
+                </div>
                 <Link to="/reset-password">Forgot Password?</Link>
-                <button type="submit" className="btn btn-primary w-100 mt-3">
+                <div className="w-100 d-flex justify-content-center">
+                <button type="submit" className="btn btn-primary w-50 mt-3">
                   {" "}
                   Send
                 </button>
+                </div>
               </form>
             </div>
           </div>
