@@ -54,27 +54,22 @@ class SowController extends Controller
         DB::beginTransaction();
 
         try {
-            // Crear el registro en la tabla 'sows'
             $sow = Sow::create($validatedData);
             $user = auth()->user();
     
-            // Crear el registro en la tabla 'create_sows_by_user'
             SowByUser::create([
                 'sow_id' => $sow->ticket_sow,
                 'created_by' => $user->id,
                 'user_name' => $user->name,
-                'created_at' => now(),  // Fecha y hora actuales
+                'created_at' => now(),  
             ]);
     
-            // Confirmar la transacción
             DB::commit();
     
             return response()->json($sow, 200);
         } catch (\Exception $e) {
-            // Revertir la transacción en caso de error
             DB::rollBack();
     
-            // Registrar el error en los logs
             Log::error('Error al crear el registro: ' . $e->getMessage(), [
                 'exception' => $e,
                 'request_data' => $request->all()
@@ -146,7 +141,6 @@ class SowController extends Controller
             return response()->json(['error' => 'Registro no encontrado'], 404);
         }
     
-        // Retornar la información del creador
         return response()->json([
             'sow_id' => $sowByUser->sow_id,
             'created_by' => $sowByUser->created_by,
@@ -154,4 +148,21 @@ class SowController extends Controller
             'created_at' => $sowByUser->created_at
         ], 200);
     }
+
+    public function countState()
+    {
+        $count = Sow::select("sow_status", DB::raw("count(*) as total"))
+                        ->groupBy("sow_status")
+                        ->get();
+
+        return response()->json($count);
+    }
+
+    public function countTotalSows()
+{
+    $total = Sow::count();
+
+    return response()->json(['total' => $total]);
+}
+
 }

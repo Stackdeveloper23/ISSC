@@ -37,7 +37,7 @@ const UserUpdate = () => {
     };
 
     getUserById();
-    fetchRoles(); // Obtener roles disponibles
+    fetchRoles(); 
   }, [id]);
 
   const handleRoleChange = (e) => {
@@ -58,10 +58,13 @@ const UserUpdate = () => {
   };
 
   return (
-    <div className="container-fluid">
+    <div>
       <div className="row">
+        <div className="col-sm-1">
         <Siderbar />
-        <div className="col-sm-10 mt-3 mb-3">
+        </div>
+        <div className="col-sm-11 mt-3 mb-3">
+          <div className="me-4">
           <div className="card">
             <div className="card-header">
               <div className="container d-flex">
@@ -129,6 +132,7 @@ const UserUpdate = () => {
               </div>
             </div>
           </div>
+        </div>
         </div>
       </div>
     </div>

@@ -23,7 +23,7 @@ const Navbar = () => {
                 <>
                     <li className="nav-item d-flex align-items-center me-3">
                         <a className="nav-link">
-                        {getRol()}
+                        {getRol().toUpperCase()}
                         </a>
                     </li>
                     <li className="nav-item">
@@ -67,7 +67,7 @@ const Navbar = () => {
                 </Link>
                 <ButtonTheme />
                 <div className="container d-flex justify-content-center align-items-center">
-                    <h3 className="text-light">SCSI</h3>
+                    <h2 className="text-light mb-0"> Sow Control System  Implementation (SCSI)</h2>
                 </div>
                 <button
                     className="navbar-toggler"

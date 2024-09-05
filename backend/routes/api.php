@@ -24,6 +24,12 @@ use Illuminate\Support\Facades\Route;
         Route::post('/auth/logout', [AuthController::class, 'logout']);
         
         Route::group(['middleware' => ['auth:sanctum', 'role:admin']], function() {
+        
+        
+        Route::get("/admin/totalUsers", [UserController::class, "countTotalUsers"]);
+        Route::get("/admin/totalSows", [SowController::class, "countTotalSows"]);
+        Route::get("/admin/userCount", [UserController::class, "countUsersByRole"]);
+        Route::get("/admin/sowStatus", [SowController::class, "countState"]);
             // USER ROUTES
         Route::get('/admin/user/{id}', [UserController::class, 'getUserById']);
         Route::apiResource('/admin/user', UserController::class);

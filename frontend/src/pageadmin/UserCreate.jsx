@@ -75,10 +75,13 @@ const UserCreate = () => {
     };
 
     return (
-        <div className="container-fluid">
+        <div>
             <div className="row">
+                <div className="col-sm-1">
                 <Siderbar />
-                <div className="col-sm-10 mt-3 mb-3">
+                </div>
+                <div className="col-sm-11 mt-3 mb-3">
+                    <div className="me-4">
                     <div className="card">
                         <div className="card-header w-100">
                         <div className="d-flex">
@@ -220,6 +223,7 @@ const UserCreate = () => {
                             </form>
                         </div>                      
                     </div>
+                </div>
                 </div>
             </div>
         </div>

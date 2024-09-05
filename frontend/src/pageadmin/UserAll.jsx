@@ -33,10 +33,13 @@ const UserAll = () => {
   };
 
   return (
-    <div className="container-fluid">
+    <div>
       <div className="row">
+        <div className="col-sm-1">
         <Siderbar />
+        </div>
         <div className="col-sm-11 mt-4 mb-3">
+          <div className="me-4">
           <div className="card">
             <div className="card-body">
               <div className="d-flex justify-content-between">
@@ -114,6 +117,7 @@ const UserAll = () => {
               </div>
             </div>
           </div>
+        </div>
         </div>
       </div>
     </div>

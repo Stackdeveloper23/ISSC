@@ -2,40 +2,47 @@
 import { NavLink } from "react-router-dom";
 
 const Siderbar = () => {
-  /*   const [activeButton, setActiveButton] = useState(null);
+  return (
+    <div
+      className="d-flex flex-column flex-shrink-0 "
+    >
+      {/* bg-body-tertiary style={{ width: "4.5rem" }} */}
+      <a
+        href="/admin"
+        className="d-flex justify-content-center p-3 link-body-emphasis text-decoration-none"
+        title="Icon-only"
+        data-bs-toggle="tooltip"
+        data-bs-placement="right"
+      >
+       <span className="visually-hidden">Icon-only</span>
+      </a>
 
-  const handleButtonClick = (button) => {
-    setActiveButton(prevActiveButton => (prevActiveButton === button ? null : button));
-  };*/
+      <ul className="nav nav-pills nav-flush flex-column mb-auto text-center">
+        <li className="nav-item">
+          <NavLink
+            to={`/admin/sow`}
+            className={({ isActive }) =>
+              isActive ? "btn btn-secondary w-100" : "btn btn-outline-secondary w-100"
+            }
+            >
+            <span className="material-symbols-outlined">table_view</span>Sow
+          </NavLink>
+        </li>
 
-    return (
-        <div className="col-sm-1 pt-3 pb-3">
-            <div className="list-group">
-              
-                <NavLink
-                    to={`/admin/sow`}
-                    className={({ isActive }) =>
-                        isActive
-                            ? "btn btn-secondary"
-                            : "btn btn-outline-secondary"
-                    }
-                >
-                    <span className="material-symbols-outlined">table_view</span>Sow
-                </NavLink>
-                <NavLink
-                    to={`/admin/user`}
-                    className={({ isActive }) =>
-                        isActive
-                            ? "btn btn-secondary"
-                            : "btn btn-outline-secondary"
-                    }
-                >
-                    <span className="material-symbols-outlined">account_circle</span>
-                    User
-                </NavLink>
-            </div>
-        </div>
-    );
+        <li className="nav-item">
+          <NavLink
+            to={`/admin/user`}
+            className={({ isActive }) =>
+              isActive ? "btn btn-secondary w-100" : "btn btn-outline-secondary w-100"
+            }
+          >
+            <span className="material-symbols-outlined">account_circle</span>
+            User
+          </NavLink>
+        </li>
+      </ul>
+    </div>
+  );
 };
 
 export default Siderbar;

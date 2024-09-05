@@ -50,10 +50,13 @@ const ResetRequests = () => {
     };
 
     return (
-        <div className="container-fluid">
+        <div>
             <div className="row">
+                <div className="col-sm-1">
                 <Siderbar />
+                </div>
                 <div className='col-sm-11 mt-4 mb-3'>
+                    <div className="me-4">
                     <div className="card">
                         <div className="card-body">
                         <div className="d-flex">
@@ -107,6 +110,7 @@ const ResetRequests = () => {
                 )}
                 </tbody>
             </table>
+            </div>
             </div>
             </div>
             </div>

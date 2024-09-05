@@ -3,6 +3,7 @@
 namespace App\Http\Controllers\Api\Admin;
 
 use App\Http\Controllers\Controller;
+use App\Models\Role;
 use App\Models\User;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\DB;
@@ -148,4 +149,33 @@ public function update(Request $request, $id)
     
         return response()->json($user, 200);
     }
+
+    public function user()
+    {
+        $count = User::select("sow_status", DB::raw("count(*) as total"))
+                        ->groupBy("rol")
+                        ->get();
+
+        return response()->json($count);
+    }
+
+    public function countUsersByRole()
+    {
+        $rolesWithUserCount = DB::table('roles')
+            ->join('model_has_roles', 'roles.id', '=', 'model_has_roles.role_id')
+            ->where('model_has_roles.model_type', 'App\\Models\\User') 
+            ->select('roles.name', DB::raw('count(model_has_roles.model_id) as user_count'))
+            ->groupBy('roles.id', 'roles.name')
+            ->get();
+
+        return response()->json($rolesWithUserCount);
+    }
+
+    
+    public function countTotalUsers()
+{
+    $total = User::count();
+
+    return response()->json(['total' => $total]);
+}
 }
