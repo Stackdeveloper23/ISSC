@@ -15,6 +15,7 @@ const UserUpdate = () => {
     const getUserById = async () => {
       try {
         const { data } = await Config.getUserById(id);
+        console.log("datos usuario: ", data);
         setName(data.name);
         setEmail(data.email);
         if (data.roles && Array.isArray(data.roles)) {
@@ -30,6 +31,7 @@ const UserUpdate = () => {
     const fetchRoles = async () => {
       try {
         const response = await Config.getUserRol();
+        console.log("rol de usuario:", response)
         setRoles(response.data);
       } catch (error) {
         console.error("Error al obtener roles:", error);

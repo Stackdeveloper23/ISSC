@@ -1,6 +1,6 @@
 <?php
 
-namespace App\Http\Controllers\api\admin;
+namespace App\Http\Controllers\Api\Admin;
 
 use App\Http\Controllers\Controller;
 use Illuminate\Http\Request;
@@ -10,7 +10,7 @@ class RolController extends Controller
 {
     public function index()
     {
-        $roles = Role::where('name', '!=', 'admin')->get();
+        $roles = Role::all();
         return response()->json($roles);
     }
 }

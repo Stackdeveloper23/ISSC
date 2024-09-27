@@ -26,10 +26,10 @@ return new class extends Migration
             $table->date("effort_due_date")->nullable();
             $table->string("project_id")->nullable();
             $table->string("sow_owner")->nullable();
-            $table->enum('sow_status',['new','in_progress','closed','blocked']);
+            $table->enum('sow_status',['new','in_progress','closed','blocked','cancelled']);
             $table->date('sow_delivery_date')->nullable();
             $table->string('effort_owner',100)->nullable();
-            $table->enum('effort_status',['in_progress','not_started','delivered','canceled'])->nullable();
+            $table->enum('effort_status',['in_progress','not_started','delivered','cancelled'])->nullable();
             $table->date('effort_delivery_date')->nullable();
             $table->text("comments")->nullable();
             $table->string('sow_link',255)->nullable();

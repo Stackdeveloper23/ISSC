@@ -36,6 +36,7 @@ export default function SowStatus() {
           "rgba(54, 162, 235, 0.5)",
           "rgba(255, 99, 132, 0.5)",
           "rgba(255, 159, 64, 0.5)",
+          "rgba(175, 238, 218, 1.0)"
         ],
       },
     ],
@@ -65,7 +66,7 @@ useEffect(() => {
         try {
             const response = await Config.getSowStatus(); 
             const data = response.data.map((item) => item.total);
-            const labels = ["NEW", "IN PROGRESS", "CLOSED", "BLOCKED"]; 
+            const labels = ["NEW", "IN PROGRESS", "CLOSED", "BLOCKED","CANCELLED"]; 
             setChartData((prev) => ({
                 ...prev,
                 labels: labels,

@@ -95,7 +95,7 @@ const ButtonTheme = () => {
         <div className="dropdown position-fixed bottom-0 end-0 mb-3 me-3 bd-mode-toggle">
             {svg()}
             <button
-                className="btn btn-bd-primary py-2 dropdown-toggle d-flex align-items-center"
+                className="btn btn-bd-primary py-2 dropdown-toggle d-flex align-items-center justify-content-end"
                 id="bd-theme"
                 type="button"
                 aria-expanded="false"

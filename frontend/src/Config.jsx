@@ -144,15 +144,40 @@ export default {
       },
     });
   },
-
+/*
   getUserById: (id) => {
-    const token = getToken(); // Obtener el token
+    const token = getToken(); 
     return axios.get(`${base_api_url}/admin/user/${id}`, {
       headers: {
         Authorization: `Bearer ${token}`,
       },
+      
     });
   },
+*/
+getUserById: (id) => {
+  const token = getToken();
+
+  console.log("ID:", id);
+  console.log("Token:", token);
+
+  return axios
+    .get(`${base_api_url}/admin/user/${id}`, {
+      headers: {
+        Authorization: `Bearer ${token}`,
+      },
+    })
+    .then((response) => {
+      // Imprime la respuesta completa
+      console.log("Response:", response);
+      return response;
+    })
+    .catch((error) => {
+      // Imprime el error si la llamada falla
+      console.error("Error fetching user:", error);
+      throw error;
+    });
+},
 
   getUserCreate: (data) => {
     const token = getToken();

@@ -1,6 +1,6 @@
 <?php
 
-use App\Http\Controllers\api\Admin\RolController;
+use App\Http\Controllers\Api\Admin\RolController;
 use App\Http\Controllers\Api\Admin\UserController;
 use App\Http\Controllers\Api\AuthController;
 use App\Http\Controllers\Api\Admin\SowController;

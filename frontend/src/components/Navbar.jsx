@@ -21,7 +21,7 @@ const Navbar = () => {
         if (getToken()) {
             return (
                 <>
-                    <li className="nav-item d-flex align-items-center me-3">
+                    <li className="nav-item d-flex align-items-center">
                         <a className="nav-link">
                         {getRol().toUpperCase()}
                         </a>
@@ -56,8 +56,9 @@ const Navbar = () => {
     };
     return (
         <nav className="navbar navbar-expand-lg border border-dark" style={{ backgroundColor: "#ff6e4b"}}>
-            <div className="container-fluid">
-                <Link to={`/${rol}`} className="navbar-brand">
+                <div className="row w-100">
+                    <div className="col-sm-2">
+                <Link to={`/${rol}`} className="navbar-brand ms-3">
                     <img
                         src="https://www.intraway.com/wp-content/uploads/2023/08/intraway-logo.png"
                         className="navbar-brand"
@@ -65,29 +66,15 @@ const Navbar = () => {
                         style={{ width: "150px", height: "auto" }}
                     />
                 </Link>
-                <ButtonTheme />
-                <div className="container d-flex justify-content-center align-items-center">
+                </div>
+                <div className="col-sm-8 d-flex justify-content-center align-items-center">
                     <h2 className="text-light mb-0"> Sow Control System  Implementation (SCSI)</h2>
                 </div>
-                <button
-                    className="navbar-toggler"
-                    type="button"
-                    data-bs-toggle="collapse"
-                    data-bs-target="#navbarNavDropdown"
-                    aria-controls="navbarNavDropdown"
-                    aria-expanded="false"
-                    aria-label="Toggle navigation"
-                >
-                    <span className="navbar-toggler-icon"></span>
-                </button>
-                <div
-                    className="collapse navbar-collapse"
-                    id="navbarNavDropdown"
-                >
-                    <ul className="navbar-nav mx-auto"></ul>
-                    <ul className="navbar-nav ms-auto">{renderLinks()}</ul>
+                <div className="col-sm-2 d-flex justify-content-end">
+                    <ul className="navbar-nav">{renderLinks()}</ul>
                 </div>
-            </div>
+                </div>
+                <ButtonTheme />
         </nav>
     );
 };

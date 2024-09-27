@@ -4,9 +4,8 @@ import { NavLink } from "react-router-dom";
 const Siderbar = () => {
   return (
     <div
-      className="d-flex flex-column flex-shrink-0 "
+      className="d-flex flex-column flex-shrink-0"
     >
-      {/* bg-body-tertiary style={{ width: "4.5rem" }} */}
       <a
         href="/admin"
         className="d-flex justify-content-center p-3 link-body-emphasis text-decoration-none"

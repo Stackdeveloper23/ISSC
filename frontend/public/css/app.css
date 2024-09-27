@@ -27,10 +27,33 @@
 }
 
 .btn-opacity {
-    opacity: 0.5; /* Opacidad inicial */
-    transition: opacity 0.3s; /* Transición suave */
+    opacity: 0.5; 
+    transition: opacity 0.3s; 
   }
   
 .btn-active{
     opacity: 1;
+}
+
+@font-face {
+    font-family: 'Material Symbols Outlined';
+    src: url('material-icons-outlined.woff2') format('woff2'),
+         url('material-icons-outlined.woff') format('woff');
+    fomt-weight: normal;
+    font-style: normal;
+
+}
+
+.material-symbols-outlined {
+    font-family: 'Material Symbols Outlined';
+    font-weight: normal;
+    font-style: normal;
+    font-size: 24px;
+    display: inline-block;
+    line-height: 1;
+    text-transform: none;
+    letter-spacing: normal;
+    word-wrap: normal;
+    white-space: nowrap;
+    direction: Itr;
 }

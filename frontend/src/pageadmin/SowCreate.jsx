@@ -64,7 +64,7 @@ const SowCreate = () => {
     };
 
     return (
-        <div >
+        <div style={{ overflow: 'hidden' }}>
             <div className="row">
                 <div className="col-sm-1">
                 <Siderbar />
