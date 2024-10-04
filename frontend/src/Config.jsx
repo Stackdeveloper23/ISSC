@@ -157,10 +157,6 @@ export default {
 */
 getUserById: (id) => {
   const token = getToken();
-
-  console.log("ID:", id);
-  console.log("Token:", token);
-
   return axios
     .get(`${base_api_url}/admin/user/${id}`, {
       headers: {

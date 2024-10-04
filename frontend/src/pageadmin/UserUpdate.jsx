@@ -19,7 +19,8 @@ const UserUpdate = () => {
         setName(data.name);
         setEmail(data.email);
         if (data.roles && Array.isArray(data.roles)) {
-          setSelectedRoles(data.roles.map((role) => role.id));
+          setSelectedRoles(data.roles.map((role) => role.id.toString()));
+          console.log("roles", data.roles.map((role) => role.id.toString()));
         } else {
           setSelectedRoles([]);
         }
@@ -117,7 +118,7 @@ const UserUpdate = () => {
                       onChange={handleRoleChange}
                     >
                       {roles.map((role) => (
-                        <option key={role.id} value={role.id}>
+                        <option key={role.id} value={role.id.toString()}>
                           {role.name}
                         </option>
                       ))}

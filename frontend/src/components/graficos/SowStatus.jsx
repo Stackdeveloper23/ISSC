@@ -26,11 +26,11 @@ ChartJS.register(
 
 export default function SowStatus() {
   const [chartData, setChartData] = useState({
-    labels: [],
+    labels: ["NEW", "IN PROGRESS", "CLOSED", "BLOCKED", "CANCELLED"],
     datasets: [
       {
         label: "Quantity",
-        data: [],
+        data: [0, 0, 0, 0, 0],
         backgroundColor: [
           "rgba(50, 205, 50, 0.5)",
           "rgba(54, 162, 235, 0.5)",
@@ -62,28 +62,39 @@ export default function SowStatus() {
   };
 
 useEffect(() => {
-    const fetchData = async () => {
-        try {
-            const response = await Config.getSowStatus(); 
-            const data = response.data.map((item) => item.total);
-            const labels = ["NEW", "IN PROGRESS", "CLOSED", "BLOCKED","CANCELLED"]; 
-            setChartData((prev) => ({
-                ...prev,
-                labels: labels,
-                datasets: [
-                    {
-                        ...prev.datasets[0],
-                        data: data,
-                    },
-                ],
-            }));
-        } catch (error) {
-            console.error("Error al obtener los datos:", error);
-        }
-    };
+  const fetchData = async () => {
+    try {
+      const response = await Config.getSowStatus();
 
-    fetchData();
-}, []); 
+      const initialData = {
+        NEW: 0,
+        "IN PROGRESS": 0,
+        CLOSED: 0,
+        BLOCKED: 0,
+        CANCELLED: 0,
+      };
+      response.data.forEach((item) => {
+        initialData[item.sow_status.toUpperCase()] = item.total;
+      });
+      const data = chartData.labels.map((label) => initialData[label]);
+
+      setChartData((prev) => ({
+        ...prev,
+        datasets: [
+          {
+            ...prev.datasets[0],
+            data: data,
+          },
+        ],
+      }));
+    } catch (error) {
+      console.error("Error al obtener los datos:", error);
+    }
+  };
+
+  fetchData();
+}, []);
+
 
   return <Bar data={chartData} options={misoptions} />;
 }
