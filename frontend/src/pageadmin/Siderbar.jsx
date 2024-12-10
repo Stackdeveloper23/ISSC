@@ -24,7 +24,8 @@ const Siderbar = () => {
               isActive ? "btn btn-secondary w-100" : "btn btn-outline-secondary w-100"
             }
             >
-            <span className="material-symbols-outlined">table_view</span>Sow
+            <span className="material-symbols-outlined">table_view</span>
+            SOW
           </NavLink>
         </li>
 

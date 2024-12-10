@@ -28,7 +28,7 @@ const Login = () => {
 
   const submitLogin = async (e) => {
     e.preventDefault();
-    await axios.get("/santum/csrf-cookie").then(() => {
+    await axios.get("/sanctum/csrf-cookie").then(() => {
       Config.getLogin({ email, password }).then(({ data }) => {
         if (data.success) {
           console.log(data);

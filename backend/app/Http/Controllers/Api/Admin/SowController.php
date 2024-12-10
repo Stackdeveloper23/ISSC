@@ -16,7 +16,7 @@ class SowController extends Controller
     {
         $perPage = 10;
         $data = Sow::orderBy("ticket_sow")
-                    ->select("ticket_sow", "sow_description", "project_id", "delivery_team", "ticket_date", "sow_status")
+                    ->select("ticket_sow", "sow_description", "account_name","project_id", "delivery_team", "ticket_date", "sow_status")
                     ->paginate($perPage);
         return response()->json($data, 200);
     }

@@ -15,7 +15,7 @@ const PanelAdmin = () => {
           <div className="container d-flex justify-content-center">
             <div className="col-sm-8 ">
               <div className="mb-4 mt-5 d-flex justify-content-center">
-                <h2>Sow Status</h2>
+                <h2>SOW Status</h2>
               </div>
               <div className="ms-5" style={{marginBottom: "20px"}}>
               <TotalSow />

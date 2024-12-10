@@ -85,12 +85,13 @@ const SowAll = () => {
     };
 
     const filteredSows = allSows.filter((item) =>
-        item.ticket_sow.toLowerCase().includes(searchTerm.toLowerCase()) ||
-        item.sow_description.toLowerCase().includes(searchTerm.toLowerCase()) ||
-        item.project_id?.toString().toLowerCase().includes(searchTerm.toLowerCase()) ||
-        item.delivery_team.toLowerCase().includes(searchTerm.toLowerCase()) ||
-        item.ticket_date.toLowerCase().includes(searchTerm.toLowerCase()) ||
-        item.sow_status.toLowerCase().includes(searchTerm.toLowerCase())
+        (item.ticket_sow?.toLowerCase() || "").includes(searchTerm.toLowerCase()) ||
+        (item.sow_description?.toLowerCase() || "").includes(searchTerm.toLowerCase()) ||
+        (item.account_name?.toLowerCase() || "").includes(searchTerm.toLowerCase()) ||
+        (item.project_id?.toString().toLowerCase() || "").includes(searchTerm.toLowerCase()) ||
+        (item.delivery_team?.toLowerCase() || "").includes(searchTerm.toLowerCase()) ||
+        (item.ticket_date?.toLowerCase() || "").includes(searchTerm.toLowerCase()) ||
+        (item.sow_status?.toLowerCase() || "").includes(searchTerm.toLowerCase())
     );
 
     const dataToDisplay = searchTerm ? filteredSows : sow;
@@ -140,12 +141,13 @@ const SowAll = () => {
                                 <table className="table table-hover table-bordered align-middle">
                                     <thead>
                                         <tr className="table-secondary">
-                                            <th className="col-sm-2">Sow-Ticket</th>
-                                            <th className="col-sm-4">Description</th>
-                                            <th className="col-sm-2">Project</th>
-                                            <th className="col-sm-1">Team</th>
-                                            <th className="col-sm-2">Date</th>
-                                            <th className="col-sm-2">Status</th>
+                                            <th className="col-sm-2 text-center">SOW Ticket</th>
+                                            <th className="col-sm-5 text-center">Description</th>
+                                            <th className="col-sm-1 text-center">Account</th>
+                                            <th className="col-sm-1 text-center">Project</th>
+                                            <th className="col-sm-1 text-center">Team</th>
+                                            <th className="col-sm-1 text-center">Date</th>
+                                            <th className="col-sm-1 text-center">Status</th>
                                             <th></th>
                                         </tr>
                                     </thead>
@@ -157,13 +159,14 @@ const SowAll = () => {
                                         ) : dataToDisplay.length > 0 ? ( 
                                             dataToDisplay.map((item) => (
                                                 <tr key={item.ticket_sow}>
-                                                    <td>{item.ticket_sow}</td>
+                                                    <td className="text-center">{item.ticket_sow}</td>
                                                     <td>{item.sow_description}</td>
-                                                    <td>{item.project_id}</td>
-                                                    <td>{item.delivery_team}</td>
+                                                    <td className="text-center">{item.account_name}</td>
+                                                    <td className="text-center">{item.project_id}</td>
+                                                    <td className="text-center">{item.delivery_team}</td>
                                                     <td>{new Date(item.ticket_date).toLocaleDateString("es-CO")}</td>
-                                                    <td className="uppercase-column">{item.sow_status}</td>
-                                                    <td>
+                                                    <td className="uppercase-column text-center">{item.sow_status}</td>
+                                                    <td className="text-center">
                                                         <Link
                                                             id="btn-view"
                                                             to={`/admin/sow/details/${item.ticket_sow}`}

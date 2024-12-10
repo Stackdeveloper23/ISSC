@@ -50,15 +50,16 @@ const SowAll = () => {
                     <div className="card">
                         <div className="card-body">
                             <div className="table-responsive mt-3">
-                                <table className="table table-hover table-bordered table-striped">
+                                <table className="table table-hover table-bordered table-striped align-middle">
                                     <thead>
                                         <tr className="table-secondary">
-                                            <th className="col-sm-2">Sow-Ticket</th>
-                                            <th className="col-sm-4">Description</th>
-                                            <th className="col-sm-2">Project</th>
-                                            <th className="col-sm-1">Team</th>
-                                            <th className="col-sm-2">Date</th>
-                                            <th className="col-sm-2">Status</th>
+                                            <th className="col-sm-2 text-center">SOW Ticket</th>
+                                            <th className="col-sm-4 text-center">Description</th>
+                                            <th className="col-sm-1 text-center">Account</th>
+                                            <th className="col-sm-1 text-center">Project</th>
+                                            <th className="col-sm-1 text-center">Team</th>
+                                            <th className="col-sm-1 text-center">Date</th>
+                                            <th className="col-sm-1 text-center">Status</th>
                                             <th></th>
                                         </tr>
                                     </thead>
@@ -70,17 +71,19 @@ const SowAll = () => {
                                         ) : sow.length > 0 ? ( 
                                             sow.map((item) => (
                                                 <tr key={item.ticket_sow}>
-                                                    <td>{item.ticket_sow}</td>
+                                                    <td className="text-center">{item.ticket_sow}</td>
                                                     <td>{item.sow_description}</td>
-                                                    <td>{item.project_id}</td>
-                                                    <td>{item.delivery_team}</td>
-                                                    <td>{new Date(item.ticket_date).toLocaleDateString("es-CO")}</td>
-                                                    <td className="uppercase-column">{item.sow_status}</td>
+                                                    <td className="text-center">{item.account_name}</td>
+                                                    <td className="text-center">{item.project_id}</td>
+                                                    <td className="text-center">{item.delivery_team}</td>
+                                                    <td className="text-center">{new Date(item.ticket_date).toLocaleDateString("es-CO")}</td>
+                                                    <td className="uppercase-column text-center">{item.sow_status}</td>
                                                     <td>
                                                         <Link
+                                                            id="btn-view"
                                                             to={`/reader/sow/details/${item.ticket_sow}`}
                                                             className="btn d-flex justify-content-center w-50"
-                                                        style={{ backgroundColor: "#F9E2AF"}}>
+                                                        >
                                                             <span className="material-symbols-outlined">
                                                                 pageview
                                                             </span>

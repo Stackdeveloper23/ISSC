@@ -90,7 +90,7 @@ const SowDetails = () => {
     };
 
     const fields = [
-        { label: "Sow Ticket", name: "ticket_sow", type: "text", col: 8 },
+        { label: "SOW Ticket", name: "ticket_sow", type: "text", col: 8 },
         { label: "CLS", name: "cls", type: "text", col: 8 },
         { label: "Opportunity Name", name: "opportunity_name", type: "text", col: 8 },
         { label: "Opportunity ID", name: "opportunity_id", type: "text", col: 8 },
@@ -100,17 +100,17 @@ const SowDetails = () => {
         { label: "Create_at", name: "create_at", type: "date", col: 8 },
         { label: "Description", name: "sow_description", type: "textarea", col: 8 },
         { label: "Priority", name: "priority", type: "select", col: 8, field: "priority" },
-        { label: "Sow Due Date", name: "sow_due_date", type: "date", col: 8},
+        { label: "SOW Due Date", name: "sow_due_date", type: "date", col: 8},
         { label: "Effort Due Date", name: "effort_due_date", type: "date", col: 8 },
-        { label: "Sow Status", name: "sow_status", type: "select", col: 8, field: "sow_status" },
+        { label: "SOW Status", name: "sow_status", type: "select", col: 8, field: "sow_status" },
         { label: "Delivery Date", name: "sow_delivery_date", type: "date", col: 8 },
         { label: "Effort Owner", name: "effort_owner", type: "text", col: 8 },
         { label: "Project ID", name: "project_id", type: "text", col: 8 },
-        { label: "Sow Owner", name: "sow_owner", type: "text", col: 8 },
+        { label: "SOW Owner", name: "sow_owner", type: "text", col: 8 },
         { label: "Effort Status", name: "effort_status", type: "select", col: 8, field: "effort_status" },
         { label: "Effort Delivery Date", name: "effort_delivery_date", type: "date", col: 8 },
         { label: "Comments", name: "comments", type: "textarea", col: 8 },
-        { label: "Sow Link", name: "sow_link", type: "text", col: 8},
+        { label: "SOW Link", name: "sow_link", type: "text", col: 8},
         { label: "Effort Link", name: "effort_link", type: "text", col: 8 },
     ];
 

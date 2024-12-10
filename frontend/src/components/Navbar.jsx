@@ -68,7 +68,7 @@ const Navbar = () => {
                 </Link>
                 </div>
                 <div className="col-sm-8 d-flex justify-content-center align-items-center">
-                    <h2 className="text-light mb-0"> Sow Control System  Implementation (SCSI)</h2>
+                    <h2 className="text-light mb-0"> SOW Control System  Implementation (SCSI)</h2>
                 </div>
                 <div className="col-sm-2 d-flex justify-content-end">
                     <ul className="navbar-nav">{renderLinks()}</ul>

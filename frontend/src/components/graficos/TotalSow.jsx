@@ -19,7 +19,7 @@ const TotalSow = () => {
     }, []); 
     return(
         <div>
-            <button className="btn btn-primary">Total Sows: {totalSows}</button>
+            <button className="btn btn-primary">Total SOWs: {totalSows}</button>
         </div>
     )
 }

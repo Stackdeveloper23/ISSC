@@ -4,11 +4,13 @@ WORKDIR /app
 COPY package.json ./
 COPY package-lock.json ./
 RUN npm install
-COPY . ./
+COPY . .
 RUN npm run build
-
-# Etapa 2: Servidor NGINX
-FROM nginx:alpine
-COPY --from=builder /app/build /usr/share/nginx/html
+# Etapa 2: Servidor Apache
+FROM httpd:2.4
+COPY --from=builder /app/dist /usr/local/apache2/htdocs/
 EXPOSE 80
-CMD ["nginx", "-g", "daemon off;"]
+CMD ["httpd-foreground"]
+
+
+

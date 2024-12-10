@@ -18,7 +18,7 @@ const UserAll = () => {
          setUsers(response || []); 
      } catch (error) {
       console.error("Error al obtener usuarios:", error);
-      setUsers([]); // En caso de error, establece users como un array vacío
+      setUsers([]); 
     } finally {
       setLoading(false);
     }
